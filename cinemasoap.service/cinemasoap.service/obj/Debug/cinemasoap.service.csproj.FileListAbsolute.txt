@@ -1,0 +1,7 @@
+D:\projects\cinema-soap\cinemasoap.service\cinemasoap.service\bin\cinemasoap.service.dll.config
+D:\projects\cinema-soap\cinemasoap.service\cinemasoap.service\bin\cinemasoap.service.dll
+D:\projects\cinema-soap\cinemasoap.service\cinemasoap.service\bin\cinemasoap.service.pdb
+D:\projects\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemasoap.service.csprojAssemblyReference.cache
+D:\projects\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemasoap.service.csproj.CoreCompileInputs.cache
+D:\projects\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemasoap.service.dll
+D:\projects\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemasoap.service.pdb

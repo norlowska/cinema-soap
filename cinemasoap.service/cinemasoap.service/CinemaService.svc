@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="cinemasoap.service.CinemaSoap" CodeBehind="CinemaService.svc.cs" %>
