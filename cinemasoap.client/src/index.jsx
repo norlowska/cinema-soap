@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import 'antd/dist/antd.css';
 import { ConfigProvider } from 'antd';
-import plPL from 'antd/lib/locale/fr_FR';
+import plPL from 'antd/lib/locale/pl_PL';
 
 ReactDOM.render(
   <React.StrictMode>

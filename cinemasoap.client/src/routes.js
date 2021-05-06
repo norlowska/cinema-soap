@@ -6,7 +6,7 @@ const routes = [
   {
     path: '/',
     exact: true,
-    type: routeConstants.PRIVATE_ROUTE,
+    type: routeConstants.PUBLIC_ROUTE,
     component: HomePage,
   },
 ];

@@ -1,0 +1,28 @@
+.logo {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: whitesmoke;
+  float: left;
+}
+
+.menu {
+  float: right;
+}
+
+.menu li.ant-menu-item {
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.menu::after {
+  content: ' ';
+  clear: both;
+}
+
+.page-container {
+  padding-top: 64px;
+  height: 100%;
+}
