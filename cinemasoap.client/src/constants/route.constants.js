@@ -1,0 +1,5 @@
+export const routeConstants = {
+  PRIVATE_ROUTE: 'PRIVATE_ROUTE',
+  PUBLIC_ROUTE: 'PUBLIC_ROUTE',
+  RESTRICTED_ROUTE: 'RESTRICTED_ROUTE',
+};
