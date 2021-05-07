@@ -5,3 +5,10 @@ D:\projects\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemaso
 D:\projects\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemasoap.service.csproj.CoreCompileInputs.cache
 D:\projects\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemasoap.service.dll
 D:\projects\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemasoap.service.pdb
+C:\Users\BlackSmith\Source\Repos\cinema-soap\cinemasoap.service\cinemasoap.service\bin\cinemasoap.service.dll.config
+C:\Users\BlackSmith\Source\Repos\cinema-soap\cinemasoap.service\cinemasoap.service\bin\cinemasoap.service.dll
+C:\Users\BlackSmith\Source\Repos\cinema-soap\cinemasoap.service\cinemasoap.service\bin\cinemasoap.service.pdb
+C:\Users\BlackSmith\Source\Repos\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemasoap.service.csprojAssemblyReference.cache
+C:\Users\BlackSmith\Source\Repos\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemasoap.service.csproj.CoreCompileInputs.cache
+C:\Users\BlackSmith\Source\Repos\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemasoap.service.dll
+C:\Users\BlackSmith\Source\Repos\cinema-soap\cinemasoap.service\cinemasoap.service\obj\Debug\cinemasoap.service.pdb

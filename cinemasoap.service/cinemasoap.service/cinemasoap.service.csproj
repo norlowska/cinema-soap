@@ -64,6 +64,15 @@
     <Compile Include="CinemaService.svc.cs">
       <DependentUpon>CinemaService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Actor.cs" />
+    <Compile Include="Classes\Character.cs" />
+    <Compile Include="Classes\CrewMember.cs" />
+    <Compile Include="Classes\Movie.cs" />
+    <Compile Include="Classes\Reservation.cs" />
+    <Compile Include="Classes\Screen.cs" />
+    <Compile Include="Classes\Screening.cs" />
+    <Compile Include="Classes\Seat.cs" />
+    <Compile Include="Classes\User.cs" />
     <Compile Include="ICinemaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
