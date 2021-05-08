@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace cinemasoap.service.Classes
+namespace cinemasoap.service.Models
 {
     public class Character
     {
-        private Guid characterID;
-        private string characterName;
-        private Actor actor;
+        public Guid characterID;
+        public string characterName;
+        public Actor actor;
+
 
         public bool deleted; 
 
@@ -27,7 +28,7 @@ namespace cinemasoap.service.Classes
             characterName = name;
         }
 
-        public string getCharacterName ()
+        public string getCharacterName()
         {
             return characterName;
         }

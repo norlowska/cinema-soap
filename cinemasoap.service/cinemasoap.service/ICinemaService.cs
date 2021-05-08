@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cinemasoap.service.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -14,10 +15,13 @@ namespace cinemasoap.service
     {
 
         [OperationContract]
-        string GetData(int value);
+        List<Movie> GetRepertoire(DateTime date);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        bool SignIn(string email, string pass);
+
+        [OperationContract]
+        bool SignUp(User user);
 
         // TODO: Add your service operations here
     }

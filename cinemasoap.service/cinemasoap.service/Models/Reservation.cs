@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace cinemasoap.service.Classes
+namespace cinemasoap.service.Models
 {
     public class Reservation
     {
-        private Guid reservationID;
-        private User user;
-        private Screening screening;
-        private List<Seat> seats;
+        public Guid reservationID;
+        public User user;
+        public Screening screening;
+        public List<Seat> seats;
 
         public bool deleted;
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cinemasoap.service.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,22 +13,36 @@ namespace cinemasoap.service
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class CinemaSoap : ICinemaService
     {
-        public string GetData(int value)
+        /// <summary>
+        /// Pobranie repertuaru w podanym dniu
+        /// </summary>
+        /// <param name="date">Data</param>
+        /// <returns>Lista filmów wraz z seansami w danym dniu</returns>
+        public List<Movie> GetRepertoire(DateTime date)
         {
-            return string.Format("You entered: {0}", value);
+            CinemaContext dc = CinemaContext.GetContext();
+            return Movie.GetRepertoire(dc, date);
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        /// <summary>
+        /// Logowanie użytkownika
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="pass"></param>
+        /// <returns></returns>
+        public bool SignIn(string email, string pass)
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Rejestracja użytkownika
+        /// </summary>
+        /// <param name="user">Model użytkownika z danymi</param>
+        /// <returns></returns>
+        public bool SignUp(User user)
+        {
+            return User.SignUp(user);
         }
     }
 }

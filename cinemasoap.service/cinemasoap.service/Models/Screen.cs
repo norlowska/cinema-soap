@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace cinemasoap.service.Classes
+namespace cinemasoap.service.Models
 {
     public class Screen
     {
-        private Guid screenID;
+        public Guid screenID;
 
-        private string screenName;
-        private int screenSize;
-        private List<Seat> seats;
+        public string screenName;
+        public int screenSize;
+        public List<Seat> seats;
 
         public Screen()
         {

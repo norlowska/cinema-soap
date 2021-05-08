@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace cinemasoap.service.Classes
+namespace cinemasoap.service.Models
 {
     public class Actor
     {
-        private Guid actorID;
-        private string firstName;
-        private string secondName;
-        private string lastName;
+        public Guid actorID;
+        public string firstName;
+        public string secondName;
+        public string lastName;
 
         public bool deleted;
 
         public Actor()
         {
-            actorID = Guid.NewGuid(); ;
+            actorID = Guid.NewGuid();
             firstName = null;
             secondName = null;
             lastName = null;

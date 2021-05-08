@@ -3,31 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Drawing;
+using cinemasoap.service.Models;
 
-namespace cinemasoap.service.Classes
+namespace cinemasoap.service.Models
 {
     public class Movie
     {
-        private Guid movieID;
-        private String title; //tytuł filmu
-        private String desc; //Opis fiomu
-        private Image image; //Grafika 
-        private List<Character> characters;
-        private List<CrewMember> crew;
+        public Guid movieID;
+        public String title; //tytuł filmu
+        public String desc; //Opis fiomu
+        public byte[] imageData;
+        public Image image; //Grafika 
+        public List<Character> characters;
+        public List<CrewMember> crew;
 
         public bool deleted; //zmienna logiczna
-
-        public Movie()
-        {
-            movieID = Guid.NewGuid();
-            title = null;
-            desc = null;
-            image = null;
-
-            characters = new List<Character>();
-            crew = new List<CrewMember>();
-            deleted = false;
-        }
 
         public void setTitle(String newTitle)
         {
@@ -61,7 +51,7 @@ namespace cinemasoap.service.Classes
 
         public void AddCharacter(Character character)
         {
-            characters.Add(character);
+            this.characters.Add(character);
         }
 
         public List<Character> getCharacterList()
@@ -82,6 +72,11 @@ namespace cinemasoap.service.Classes
         public Guid getMovieID()
         {
             return movieID;
+        }
+
+        public static List<Movie> GetRepertoire(CinemaContext dc, DateTime date)
+        {
+            return dc.Screenings.Where(item => item.fullDate == date).Select(item => item.movie).ToList();
         }
     }
 }

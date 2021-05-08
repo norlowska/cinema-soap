@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace cinemasoap.service.Classes
+namespace cinemasoap.service.Models
 {
     public class CrewMember
     {
-        private Guid crewMemberID;
-        private string firstName;
-        private string secondName;
-        private string lastName;
-        private string job; //można przerobić na enum'a?
+        public Guid crewMemberID;
+        public string firstName;
+        public string secondName;
+        public string lastName;
+        public string job; //można przerobić na enum'a? 
 
-        public bool deleted; //zmienna logiczna
+        public bool deleted = false; //zmienna logiczna
 
         public CrewMember()
         {
