@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Router, Switch, Redirect, Route, NavLink } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import { routeConstants } from './constants';
 import { PrivateRoute, PublicRoute } from './components';
 import routes from './routes';
 import history from './history';
+import { localStorageService, userService } from './services';
 import 'antd/dist/antd.css';
 import './App.css';
 
 const { Header, Content } = Layout;
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    // setIsAuthenticated(localStorageService.getToken());
+    setIsAuthenticated(true);
+  }, []);
+
+  const logout = () => {
+    userService.logout();
+  };
+
   return (
     <Router history={history}>
       <Layout className='app'>
@@ -19,7 +30,13 @@ function App() {
             <div className='logo'>CINEMA</div>
           </NavLink>
           <Menu theme='dark' mode='horizontal' className='menu'>
-            <Menu.Item key='login'>Zaloguj</Menu.Item>
+            {!isAuthenticated && <Menu.Item key='login'>Zaloguj</Menu.Item>}
+            {isAuthenticated && <Menu.Item key='reservations'>Twoje rezerwacje</Menu.Item>}
+            {isAuthenticated && (
+              <Menu.Item key='logout' onClick={logout}>
+                Wyloguj
+              </Menu.Item>
+            )}
           </Menu>
         </Header>
         <Content className='page-container'>
