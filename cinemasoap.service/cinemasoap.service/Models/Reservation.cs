@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace cinemasoap.service.Models
 {
+    [DataContract]
     public class Reservation
     {
+        [DataMember]
         public Guid reservationID;
+        [DataMember]
         public User user;
+        [DataMember]
         public Screening screening;
+        [DataMember]
         public List<Seat> seats;
-
+        [DataMember]
         public bool deleted;
 
         public Reservation()

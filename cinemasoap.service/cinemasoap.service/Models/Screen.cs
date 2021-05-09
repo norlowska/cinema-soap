@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace cinemasoap.service.Models
 {
+    [DataContract]
     public class Screen
     {
+        [DataMember]
         public Guid screenID;
-
+        [DataMember]
         public string screenName;
+        [DataMember]
         public int screenSize;
+        [DataMember]
         public List<Seat> seats;
 
         public Screen()

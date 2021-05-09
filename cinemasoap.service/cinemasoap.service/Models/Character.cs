@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace cinemasoap.service.Models
 {
+    [DataContract]
     public class Character
     {
+        [DataMember]
         public Guid characterID;
+        [DataMember]
         public string characterName;
+        [DataMember]
         public Actor actor;
-
-
+        [DataMember]
         public bool deleted; 
 
         public Character()

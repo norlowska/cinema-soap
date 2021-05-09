@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace cinemasoap.service.Models
 {
+    [DataContract]
     public class CrewMember
     {
+        [DataMember]
         public Guid crewMemberID;
+        [DataMember]
         public string firstName;
+        [DataMember]
         public string secondName;
+        [DataMember]
         public string lastName;
+        [DataMember]
         public string job; //można przerobić na enum'a? 
-
+        [DataMember]
         public bool deleted = false; //zmienna logiczna
 
         public CrewMember()

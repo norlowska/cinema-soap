@@ -1,21 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Web;
 
 namespace cinemasoap.service.Models
 {
+    [DataContract]
     public class User
     {
+        [DataMember]
         public Guid userID =  Guid.NewGuid();
+        [DataMember]
         public string email;
+        [DataMember]
         public string password;
+        [DataMember]
         public string firstName;
+        [DataMember]
         public string secondName; // dodałem ekstra zmienną- w przyszłości można dodać do dziedziczenia z klasy osoba
+        [DataMember]
         public string lastName;
+        [DataMember]
         public List<Reservation> reservations;
-
+        [DataMember]
         public bool deleted = false;
 
         public void setEmail(string newEmail)

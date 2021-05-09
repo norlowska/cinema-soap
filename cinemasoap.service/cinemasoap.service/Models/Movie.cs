@@ -4,17 +4,26 @@ using System.Linq;
 using System.Web;
 using System.Drawing;
 using cinemasoap.service.Models;
+using System.Runtime.Serialization;
 
 namespace cinemasoap.service.Models
 {
+    [DataContract]
     public class Movie
     {
+        [DataMember]
         public Guid movieID;
+        [DataMember]
         public String title; //tytuł filmu
+        [DataMember]
         public String desc; //Opis fiomu
+        [DataMember]
         public byte[] imageData;
+        [DataMember]
         public Image image; //Grafika 
+        [DataMember]
         public List<Character> characters;
+        [DataMember]
         public List<CrewMember> crew;
 
         public bool deleted; //zmienna logiczna
