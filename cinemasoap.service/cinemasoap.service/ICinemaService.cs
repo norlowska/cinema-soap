@@ -25,10 +25,10 @@ namespace cinemasoap.service
 
         [OperationContract]
         [UsernamePasswordAuthentication]
-        bool EditReservation(Guid id);
+        bool EditReservation(Reservation newReservation);
 
         [OperationContract]
         [UsernamePasswordAuthentication]
-        byte[] BookScreening(Guid id, int[][] chosenSeats);
+        byte[] BookScreening(Guid id, int[][] chosenSeats, Guid userID);
     }
 }

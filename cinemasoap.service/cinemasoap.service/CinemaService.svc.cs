@@ -42,24 +42,19 @@ namespace cinemasoap.service
             return false;
         }
 
-        public bool EditReservation(Guid id)
-        {
-            Reservation reservation = Reservation.GetById(id);
-            if(reservation != null)
-            {
-                //return reservation.editReservation
-            }
-            return false;
+        public bool EditReservation(Reservation newReservation)
+        {            
+            return Reservation.editReservation(newReservation);
         }
 
-        public byte[] BookScreening(Guid id, int[][] chosenSeats)
+        public byte[] BookScreening(Guid id, int[][] chosenSeats, Guid userID)
         {
             Screening screening = Screening.GetById(id);
             Reservation reservation = new Reservation();
             List<Seat> seats = reservation.ConvertSeatsTabToList(screening.screeningID ,chosenSeats);
             if(screening != null)
             {
-                return reservation.bookScreening(screening, seats);
+                return reservation.bookScreening(screening, seats, userID);
             }
             return null;
         }

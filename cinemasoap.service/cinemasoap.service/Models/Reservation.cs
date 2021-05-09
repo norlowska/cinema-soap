@@ -70,14 +70,14 @@ namespace cinemasoap.service.Models
             return reservationID;
         }
 
-        public Byte[] bookScreening(Screening screening, List<Seat> bookedSeats) //w argumecnie/broszurze trzeba przekazać na jaki seans oraz jake siedzenia rezerwujesz oraz uzytkownika
+        public Byte[] bookScreening(Screening screening, List<Seat> bookedSeats, Guid userID) //w argumecnie/broszurze trzeba przekazać na jaki seans oraz jake siedzenia rezerwujesz oraz uzytkownika
         {
             if (checkSeats(bookedSeats) != 1) return null;
             else
             {
                 CinemaContext cinemaContext = CinemaContext.GetContext();
                 Reservation newReservation = new Reservation();
-                newReservation.user = this.user;
+                newReservation.user = User.GetById(userID);
                 newReservation.screening = screening;
                 newReservation.seats = bookedSeats;
                 foreach(Seat s in seats)
@@ -106,7 +106,7 @@ namespace cinemasoap.service.Models
             return seatsList;
         }
 
-        private int checkSeats(List<Seat> bookedSeats)
+        private static int checkSeats(List<Seat> bookedSeats)
         {
             CinemaContext cinemaContext = CinemaContext.GetContext();
 
@@ -202,7 +202,7 @@ namespace cinemasoap.service.Models
             return true;
         }
 
-        private int clearSeats(List<Seat> canceledSeats)
+        private static int clearSeats(List<Seat> canceledSeats)
         {
             try
             {
@@ -229,14 +229,14 @@ namespace cinemasoap.service.Models
             return CinemaContext.GetContext().Reservations.Where(item => item.reservationID == id).FirstOrDefault();
         }
 
-        public int editReservation(Reservation editedReservation)   //return 1 if function was successful and -1 when occurs any errors
+        public static bool editReservation(Reservation editedReservation)   //return 1 if function was successful and -1 when occurs any errors
         {
             CinemaContext cinema = CinemaContext.GetContext();
             foreach(Reservation r in cinema.Reservations)
             {
                 if(r.reservationID == editedReservation.reservationID)
                 {
-                    if (checkSeats(editedReservation.seats) != 1) return -1; //check if editedReservation's seats aren't already taken
+                    if (checkSeats(editedReservation.seats) != 1) return false; //check if editedReservation's seats aren't already taken
                     else
                     {
                         r.seats = editedReservation.seats;
@@ -248,11 +248,11 @@ namespace cinemasoap.service.Models
 
                         r.screening = editedReservation.screening;
                         r.user = editedReservation.user;
-                        return 1;
+                        return true;
                     }
                 }
             }
-            return -1;
+            return false;
         }
     }
 }

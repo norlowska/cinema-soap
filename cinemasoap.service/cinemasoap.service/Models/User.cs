@@ -167,5 +167,10 @@ namespace cinemasoap.service.Models
                     return false;
             return true;
         }
+
+        public static User GetById(Guid id)
+        {
+            return CinemaContext.GetContext().Users.Where(item => item.userID == id).FirstOrDefault();
+        }
     }
 }
