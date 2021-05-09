@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -17,6 +17,8 @@ namespace cinemasoap.service.Models
         public int screenSize;
         [DataMember]
         public List<Seat> seats;
+        [DataMember]
+        public LinkedList<Screening> screenings;
 
         public Screen()
         {

@@ -22,6 +22,8 @@ namespace cinemasoap.service.Models
         [DataMember]
         public DateTime fullDate;   //pełna data, do przekazania w argumecnie do konstruktora!
         [DataMember]
+        public Screen screen;
+        [DataMember]
         public bool deleted;
 
         public Screening(Guid movieId, DateTime movieScreeningDate)
