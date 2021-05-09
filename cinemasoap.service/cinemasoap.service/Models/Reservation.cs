@@ -57,5 +57,42 @@ namespace cinemasoap.service.Models
         {
             return reservationID;
         }
+
+        public void bookScreening(Screening screening, User user, List<Seat> bookedSeats) //w argumecnie/broszurze trzeba przekazać na jaki seans oraz jake siedzenia rezerwujesz oraz uzytkownika
+        {
+            if (checkSeats(bookedSeats) != 1) return;
+            else
+            {
+                Reservation newReservation = new Reservation();
+                newReservation.user = user;
+                newReservation.screening = screening;
+                newReservation.seats = bookedSeats;
+
+
+            }
+        }
+
+        private int checkSeats(List<Seat> bookedSeats)
+        {
+            CinemaContext cinemaContext = CinemaContext.GetContext();
+
+            foreach (Seat bs in bookedSeats)
+            {
+                foreach (Seat s in cinemaContext.Seats)
+                {
+                    if (bs.row == s.row)
+                    {
+                        return -1;
+                    }
+                    else continue;
+                }
+            }
+            return 1;
+        }
+
+        private void preparePDF(Reservation reservation)
+        {
+
+        }
     }
 }
