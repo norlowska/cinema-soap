@@ -75,11 +75,15 @@ namespace cinemasoap.service.Models
             if (checkSeats(bookedSeats) != 1) return;
             else
             {
+                CinemaContext cinemaContext = CinemaContext.GetContext();
                 Reservation newReservation = new Reservation();
                 newReservation.user = user;
                 newReservation.screening = screening;
                 newReservation.seats = bookedSeats;
-
+                foreach(Seat s in seats)
+                {
+                    cinemaContext.Seats.Add(s);
+                }
                 preparePDF(newReservation);
             }
         }
@@ -172,6 +176,7 @@ namespace cinemasoap.service.Models
                 CinemaContext cinemaContext = CinemaContext.GetContext();
                 cinemaContext.Reservations.Remove(reservation);
                 reservation.user.reservations.Remove(reservation);
+                reservation.deleted = true; //dunno is essential
             }
         }
 
@@ -190,6 +195,32 @@ namespace cinemasoap.service.Models
             {
                 return -1;
             }
+        }
+
+        public int editReservation(Reservation editedReservation)   //return 1 if function was successful and -1 when occurs any errors
+        {
+            CinemaContext cinema = CinemaContext.GetContext();
+            foreach(Reservation r in cinema.Reservations)
+            {
+                if(r.reservationID == editedReservation.reservationID)
+                {
+                    if (checkSeats(editedReservation.seats) != 1) return -1; //check if editedReservation's seats aren't already taken
+                    else
+                    {
+                        r.seats = editedReservation.seats;
+                        clearSeats(r.seats);    //deleted old seats
+                        foreach (Seat s in editedReservation.seats)  //add seats from editedReservation
+                        {
+                            cinema.Seats.Add(s);
+                        }
+
+                        r.screening = editedReservation.screening;
+                        r.user = editedReservation.user;
+                        return 1;
+                    }
+                }
+            }
+            return -1;
         }
     }
 }
