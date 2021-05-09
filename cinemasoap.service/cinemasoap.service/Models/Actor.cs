@@ -18,7 +18,9 @@ namespace cinemasoap.service.Models
         [DataMember]
         public string lastName;
         [DataMember]
-        public bool deleted;
+        public bool deleted=false;
+        [DataMember]
+        public string FullName { get { return firstName + " " + lastName; } }
 
         public Actor()
         {
@@ -63,6 +65,11 @@ namespace cinemasoap.service.Models
         public Guid getActorID()
         {
             return actorID;
+        }
+
+        public static Actor GetById(Guid id)
+        {
+            return CinemaContext.GetContext().Actors.Where(item => item.actorID == id).FirstOrDefault();
         }
     }
 }

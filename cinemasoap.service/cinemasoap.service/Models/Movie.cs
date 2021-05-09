@@ -25,8 +25,8 @@ namespace cinemasoap.service.Models
         public List<Character> characters;
         [DataMember]
         public List<CrewMember> crew;
-
-        public bool deleted; //zmienna logiczna
+        [DataMember]
+        public bool deleted = false; //zmienna logiczna
 
         public void setTitle(String newTitle)
         {

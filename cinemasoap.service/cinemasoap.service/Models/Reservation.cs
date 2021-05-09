@@ -24,7 +24,7 @@ namespace cinemasoap.service.Models
         [DataMember]
         public List<Seat> seats;
         [DataMember]
-        public bool deleted;
+        public bool deleted = false;
 
         public Reservation()
         {
@@ -115,7 +115,7 @@ namespace cinemasoap.service.Models
                 writeFile.WriteLine("Reservation no. " + Guid.NewGuid());
                 writeFile.WriteLine();
                 writeFile.WriteLine("Movie: " + reservation.screening.movie.title);
-                writeFile.WriteLine("Data: " + reservation.screening.getDate() + " ,Time: " + reservation.screening.getTime());
+                writeFile.WriteLine("Data: " + reservation.screening.date + " ,Time: " + reservation.screening.time);
                 writeFile.WriteLine("Screen no. " + reservation.screening.screen.getScreenID());
                 writeFile.WriteLine("Seats: ");
                 foreach(Seat s in seats)
