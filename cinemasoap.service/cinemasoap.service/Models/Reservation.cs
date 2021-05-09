@@ -84,6 +84,7 @@ namespace cinemasoap.service.Models
                 {
                     cinemaContext.Seats.Add(s);
                 }
+                cinemaContext.Reservations.Add(newReservation);
                 return preparePDF(newReservation);
                 
             }

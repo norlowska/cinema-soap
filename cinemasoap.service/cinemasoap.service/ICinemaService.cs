@@ -29,6 +29,6 @@ namespace cinemasoap.service
 
         [OperationContract]
         [UsernamePasswordAuthentication]
-        byte[] BookScreening(Guid id);
+        byte[] BookScreening(Guid id, int[][] chosenSeats);
     }
 }
