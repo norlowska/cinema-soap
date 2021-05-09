@@ -1,7 +1,13 @@
-﻿using System;
+﻿using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Xml.Linq;
+using System.Text;
 
 namespace cinemasoap.service.Models
 {
@@ -68,7 +74,7 @@ namespace cinemasoap.service.Models
                 newReservation.screening = screening;
                 newReservation.seats = bookedSeats;
 
-
+                preparePDF(newReservation);
             }
         }
 
@@ -92,7 +98,59 @@ namespace cinemasoap.service.Models
 
         private void preparePDF(Reservation reservation)
         {
+            try
+            {
+                TextWriter writeFile = new StreamWriter("Text.txt");
 
+                writeFile.WriteLine("Reservation no. " + Guid.NewGuid());
+                writeFile.WriteLine();
+                writeFile.WriteLine("Movie: " + reservation.screening.movie.title);
+                writeFile.WriteLine("Data: " + reservation.screening.getDate() + " ,Time: " + reservation.screening.getTime());
+                writeFile.WriteLine("Screen no. " + reservation.screening.screen.getScreenID());
+                writeFile.WriteLine();
+                writeFile.WriteLine("User:");
+                writeFile.WriteLine("Email: " + reservation.user.email);
+                writeFile.WriteLine("First Name " + reservation.user.firstName);
+                writeFile.WriteLine("Last Name " + reservation.user.lastName);
+                writeFile.WriteLine("ID " + reservation.user.userID);
+
+                writeFile.Close();
+                writeFile = null;
+
+                string line = null;
+                TextReader readFile = new StreamReader("Text.txt");
+                int yPoint = 0;
+
+                PdfDocument pdf = new PdfDocument();
+                pdf.Info.Title = "TXT to PDF";
+                PdfPage pdfPage = pdf.AddPage();
+                XGraphics graph = XGraphics.FromPdfPage(pdfPage);
+                XFont font = new XFont("Verdana", 20, XFontStyle.Regular);
+
+                while (true)
+                {
+                    line = readFile.ReadLine();
+                    if (line == null)
+                    {
+                        break; // TODO: might not be correct. Was : Exit While
+                    }
+                    else
+                    {
+                        graph.DrawString(line, font, XBrushes.Black, new XRect(40, yPoint, pdfPage.Width.Point, pdfPage.Height.Point), XStringFormats.TopLeft);
+                        yPoint = yPoint + 40;
+                    }
+                }
+
+                string pdfFilename = "txttopdf.pdf";
+                pdf.Save(pdfFilename);
+                readFile.Close();
+                readFile = null;
+                Process.Start(@"cmd.exe ", @"/c txttopdf.pdf");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
     }
 }

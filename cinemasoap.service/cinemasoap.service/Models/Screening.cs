@@ -14,6 +14,7 @@ namespace cinemasoap.service.Models
         public string date; //zmienna pomocnicza- wyswietla datę w stringu
         public string time; //zmienna pomocnicza- wyswietla godzinę w stringu
         public DateTime fullDate;   //pełna data, do przekazania w argumecnie do konstruktora!
+        public Screen screen;
         public bool deleted;
 
         public Screening(Guid movieId, DateTime movieScreeningDate)

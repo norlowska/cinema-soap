@@ -12,6 +12,7 @@ namespace cinemasoap.service.Models
         public string screenName;
         public int screenSize;
         public List<Seat> seats;
+        public LinkedList<Screening> screenings;
 
         public Screen()
         {
