@@ -173,7 +173,7 @@ namespace cinemasoap.service.Models
                 cinemaContext.Reservations.Remove(this);
                 this.user.reservations.Remove(this);
             }
-            return true
+            return true;
         }
 
         private int clearSeats(List<Seat> canceledSeats)
