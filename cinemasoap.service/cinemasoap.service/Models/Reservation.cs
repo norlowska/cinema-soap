@@ -168,16 +168,16 @@ namespace cinemasoap.service.Models
             }
         }
 
-        public void cancelReservation(Reservation reservation)
+        public bool cancelReservation()
         {
-            if (clearSeats(reservation.seats) != 1) return;
+            if (clearSeats(this.seats) != 1) return false;
             else
             {
                 CinemaContext cinemaContext = CinemaContext.GetContext();
-                cinemaContext.Reservations.Remove(reservation);
-                reservation.user.reservations.Remove(reservation);
-                reservation.deleted = true; //dunno is essential
+                cinemaContext.Reservations.Remove(this);
+                this.user.reservations.Remove(this);
             }
+            return true;
         }
 
         private int clearSeats(List<Seat> canceledSeats)
@@ -195,6 +195,16 @@ namespace cinemasoap.service.Models
             {
                 return -1;
             }
+        }
+
+        /// <summary>
+        /// Pobranie rezerwacji na podstawie identyfikatora
+        /// </summary>
+        /// <param name="id">Identyfikator</param>
+        /// <returns></returns>
+        public static Reservation GetById(Guid id)
+        {
+            return CinemaContext.GetContext().Reservations.Where(item => item.reservationID == id).FirstOrDefault();
         }
 
         public int editReservation(Reservation editedReservation)   //return 1 if function was successful and -1 when occurs any errors

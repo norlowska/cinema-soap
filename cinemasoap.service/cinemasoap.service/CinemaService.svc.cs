@@ -44,5 +44,13 @@ namespace cinemasoap.service
         {
             return User.SignUp(user);
         }
+
+        public bool CancelReservation(Guid id)
+        {
+            Reservation reservation = Reservation.GetById(id);
+            if(reservation != null)
+                return reservation.cancelReservation();
+            return false;
+        }
     }
 }
