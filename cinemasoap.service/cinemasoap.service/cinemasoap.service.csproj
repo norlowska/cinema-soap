@@ -81,6 +81,7 @@
     <Compile Include="CinemaService.svc.cs">
       <DependentUpon>CinemaService.svc</DependentUpon>
     </Compile>
+    <Compile Include="CrewMemberJob.cs" />
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\CinemaContext.cs" />

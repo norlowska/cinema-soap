@@ -21,6 +21,8 @@ namespace cinemasoap.service.Models
         public string job; //można przerobić na enum'a? 
         [DataMember]
         public bool deleted = false; //zmienna logiczna
+        [DataMember]
+        public Guid movieID;
 
         public CrewMember()
         {

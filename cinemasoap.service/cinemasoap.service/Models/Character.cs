@@ -16,7 +16,9 @@ namespace cinemasoap.service.Models
         [DataMember]
         public Actor actor;
         [DataMember]
-        public bool deleted; 
+        public bool deleted = false;
+        [DataMember]
+        public Guid movieID;
 
         public Character()
         {
