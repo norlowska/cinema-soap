@@ -13,17 +13,14 @@ namespace cinemasoap.service
     [ServiceContract]
     public interface ICinemaService
     {
-
         [OperationContract]
         List<Movie> GetRepertoire(DateTime date);
-
-        [OperationContract]
-        bool SignIn(string email, string pass);
 
         [OperationContract]
         bool SignUp(User user);
 
         [OperationContract]
+        [UsernamePasswordAuthentication]
         bool CancelReservation(Guid id);
     }
 }

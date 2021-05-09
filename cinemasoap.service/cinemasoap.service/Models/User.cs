@@ -93,6 +93,16 @@ namespace cinemasoap.service.Models
         }
 
         /// <summary>
+        /// Pobranie użytkownika na podstawie adresu e-mail
+        /// </summary>
+        /// <param name="email">Adres e-mail</param>
+        /// <returns>Model użytkownika</returns>
+        public static User GetByEmail(string email)
+        {
+            return CinemaContext.GetContext().Users.Where(item => item.email == email).FirstOrDefault();
+        }
+
+        /// <summary>
         /// Rejestracja użytkownika
         /// </summary>
         /// <param name="user">Użytkownik</param>
@@ -103,6 +113,22 @@ namespace cinemasoap.service.Models
             {
                 user.password = HashPassword(user.password);
                 CinemaContext.GetContext().Users.Add(user);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Logowanie użytkownika
+        /// </summary>
+        /// <param name="email">Adres e-mail</param>
+        /// <param name="password">Hasło</param>
+        /// <returns>Wartość logiczna czy pomyślnie zalogowano</returns>
+        public static bool SignIn(string email, string password)
+        {
+            User user = GetByEmail(email);
+            if (user != null)
+            {
+                return user.VerifyPassword(password);
             }
             return false;
         }
@@ -127,15 +153,14 @@ namespace cinemasoap.service.Models
         /// <summary>
         /// Weryfikowanie hasła użytkownika
         /// </summary>
-        /// <param name="user">Użytkownik</param>
         /// <param name="pass">Podane hasło</param>
         /// <returns>Wartość logiczna, czy podano prawidłowe hasło</returns>
-        private bool VerifyPassword(User user, string pass)
+        private bool VerifyPassword(string pass)
         {
-            byte[] hashBytes = Convert.FromBase64String(user.password);
+            byte[] hashBytes = Convert.FromBase64String(this.password);
             byte[] salt = new byte[16];
             Array.Copy(hashBytes, 0, salt, 0, 16);
-            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000);
+            var pbkdf2 = new Rfc2898DeriveBytes(pass, salt, 100000);
             byte[] hash = pbkdf2.GetBytes(20);
             for (int i = 0; i < 20; i++)
                 if (hashBytes[i + 16] != hash[i])

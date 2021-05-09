@@ -25,17 +25,6 @@ namespace cinemasoap.service
         }
 
         /// <summary>
-        /// Logowanie użytkownika
-        /// </summary>
-        /// <param name="email"></param>
-        /// <param name="pass"></param>
-        /// <returns></returns>
-        public bool SignIn(string email, string pass)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Rejestracja użytkownika
         /// </summary>
         /// <param name="user">Model użytkownika z danymi</param>
