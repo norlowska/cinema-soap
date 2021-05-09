@@ -46,5 +46,10 @@ namespace cinemasoap.service.Models
         {
             return fullDate.ToString("HH:mm");
         }
+
+        public static Screening GetById(Guid id)
+        {
+            return CinemaContext.GetContext().Screenings.Where(item => item.screeningID == id).FirstOrDefault();
+        }
     }
 }

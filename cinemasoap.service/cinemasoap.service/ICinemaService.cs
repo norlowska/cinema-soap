@@ -22,5 +22,13 @@ namespace cinemasoap.service
         [OperationContract]
         [UsernamePasswordAuthentication]
         bool CancelReservation(Guid id);
+
+        [OperationContract]
+        [UsernamePasswordAuthentication]
+        bool EditReservation(Guid id);
+
+        [OperationContract]
+        [UsernamePasswordAuthentication]
+        byte[] BookScreening(Guid id);
     }
 }

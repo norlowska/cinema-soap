@@ -70,22 +70,39 @@ namespace cinemasoap.service.Models
             return reservationID;
         }
 
-        public void bookScreening(Screening screening, User user, List<Seat> bookedSeats) //w argumecnie/broszurze trzeba przekazać na jaki seans oraz jake siedzenia rezerwujesz oraz uzytkownika
+        public Byte[] bookScreening(Screening screening, List<Seat> bookedSeats) //w argumecnie/broszurze trzeba przekazać na jaki seans oraz jake siedzenia rezerwujesz oraz uzytkownika
         {
-            if (checkSeats(bookedSeats) != 1) return;
+            if (checkSeats(bookedSeats) != 1) return null;
             else
             {
                 CinemaContext cinemaContext = CinemaContext.GetContext();
                 Reservation newReservation = new Reservation();
-                newReservation.user = user;
+                newReservation.user = this.user;
                 newReservation.screening = screening;
                 newReservation.seats = bookedSeats;
                 foreach(Seat s in seats)
                 {
                     cinemaContext.Seats.Add(s);
                 }
-                preparePDF(newReservation);
+                return preparePDF(newReservation);
+                
             }
+        }
+
+        public List<Seat> ConvertSeatsTabToList(Guid sID, int[][] seatsTab)
+        {
+            List<Seat> seatsList = new List<Seat>();
+            CinemaContext cinemaContext = CinemaContext.GetContext();
+            Screening screening = Screening.GetById(sID);
+            for (int i =0; i<seatsTab.Length; i++)
+            {
+                seatsList.Add(cinemaContext.Seats.FirstOrDefault(Seat => 
+                {
+                    return Seat.screen == screening.screen && Seat.row == seatsTab[i][0] && Seat.innerSeat == seatsTab[i][1];
+                }
+                ));
+            }
+            return seatsList;
         }
 
         private int checkSeats(List<Seat> bookedSeats)
@@ -106,7 +123,7 @@ namespace cinemasoap.service.Models
             return 1;
         }
 
-        private void preparePDF(Reservation reservation)
+        private Byte[] preparePDF(Reservation reservation)
         {
             try
             {
@@ -160,11 +177,15 @@ namespace cinemasoap.service.Models
                 pdf.Save(pdfFilename);
                 readFile.Close();
                 readFile = null;
-                Process.Start(@"cmd.exe ", @"/c txttopdf.pdf");
+                //Process.Start(@"cmd.exe ", @"/c txttopdf.pdf");
+                string pdfFilePath = "txttopdf.pdf";
+                byte[] bytes = System.IO.File.ReadAllBytes(pdfFilePath);
+                return bytes;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                return null;
             }
         }
 

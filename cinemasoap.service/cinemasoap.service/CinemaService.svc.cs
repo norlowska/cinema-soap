@@ -41,5 +41,29 @@ namespace cinemasoap.service
                 return reservation.cancelReservation();
             return false;
         }
+
+        public bool EditReservation(Guid id)
+        {
+            Reservation reservation = Reservation.GetById(id);
+            if(reservation != null)
+            {
+                //return reservation.editReservation
+            }
+            return false;
+        }
+
+        public byte[] BookScreening(Guid id, int[][] chosenSeats)
+        {
+            Screening screening = Screening.GetById(id);
+            Reservation reservation = new Reservation();
+            List<Seat> seats = reservation.ConvertSeatsTabToList(screening.screeningID ,chosenSeats);
+            if(screening != null)
+            {
+                return reservation.bookScreening(screening, seats);
+            }
+            return null;
+        }
+
+
     }
 }

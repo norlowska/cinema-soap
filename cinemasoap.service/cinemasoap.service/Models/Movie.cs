@@ -87,5 +87,10 @@ namespace cinemasoap.service.Models
         {
             return dc.Screenings.Where(item => item.fullDate == date).Select(item => item.movie).ToList();
         }
+
+        public static Movie GetById(Guid id)
+        {
+            return CinemaContext.GetContext().Movies.Where(item => item.movieID == id).FirstOrDefault();
+        }
     }
 }
