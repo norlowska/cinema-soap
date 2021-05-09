@@ -113,6 +113,11 @@ namespace cinemasoap.service.Models
                 writeFile.WriteLine("Movie: " + reservation.screening.movie.title);
                 writeFile.WriteLine("Data: " + reservation.screening.getDate() + " ,Time: " + reservation.screening.getTime());
                 writeFile.WriteLine("Screen no. " + reservation.screening.screen.getScreenID());
+                writeFile.WriteLine("Seats: ");
+                foreach(Seat s in seats)
+                {
+                    writeFile.WriteLine("Seat: " + s.innerSeat + ", Row: " + s.row);
+                }
                 writeFile.WriteLine();
                 writeFile.WriteLine("User:");
                 writeFile.WriteLine("Email: " + reservation.user.email);
@@ -156,6 +161,34 @@ namespace cinemasoap.service.Models
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+            }
+        }
+
+        public void cancelReservation(Reservation reservation)
+        {
+            if (clearSeats(reservation.seats) != 1) return;
+            else
+            {
+                CinemaContext cinemaContext = CinemaContext.GetContext();
+                cinemaContext.Reservations.Remove(reservation);
+                reservation.user.reservations.Remove(reservation);
+            }
+        }
+
+        private int clearSeats(List<Seat> canceledSeats)
+        {
+            try
+            {
+                CinemaContext cinemaContext = CinemaContext.GetContext();
+                foreach (Seat cs in canceledSeats)
+                {
+                    cinemaContext.Seats.Remove(cs);
+                }
+                return 1;
+            }
+            catch
+            {
+                return -1;
             }
         }
     }
