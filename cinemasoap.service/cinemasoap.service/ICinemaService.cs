@@ -31,5 +31,9 @@ namespace cinemasoap.service
         [OperationContract]
         [UsernamePasswordAuthentication]
         FileContentResponseDTO BookScreening(Guid screeningID, List<Seat> chosenSeats, Guid userID);
+
+        [OperationContract]
+        [UsernamePasswordAuthentication]
+        List<Reservation> GetReservationList(User user);
     }
 }

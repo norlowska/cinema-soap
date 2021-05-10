@@ -75,6 +75,9 @@ namespace cinemasoap.service
             }
         }
 
-
+        public List<Reservation> GetReservationList(User user)
+        {
+            return user.getReservationsList();
+        }
     }
 }
