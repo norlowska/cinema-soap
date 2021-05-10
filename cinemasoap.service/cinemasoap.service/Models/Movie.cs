@@ -11,12 +11,12 @@ namespace cinemasoap.service.Models
     [DataContract]
     public class Movie
     {
+        [DataMember]
         public Guid movieID;
         [DataMember]
         public String title; //tytuł filmu
         [DataMember]
         public String desc; //Opis fiomu
-        [DataMember]
         public byte[] imageData;
         [DataMember]
         public List<Character> characters;

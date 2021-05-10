@@ -34,6 +34,10 @@ namespace cinemasoap.service
 
         [OperationContract]
         [UsernamePasswordAuthentication]
-        List<Reservation> GetReservationList(User user);
+        List<Reservation> GetReservationList(Guid userId);
+
+        [OperationContract]
+        [UsernamePasswordAuthentication]
+        FileContentResponseDTO GetMoviePoster(Guid movieId);
     }
 }

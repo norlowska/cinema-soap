@@ -75,9 +75,28 @@ namespace cinemasoap.service
             }
         }
 
-        public List<Reservation> GetReservationList(User user)
+        /// <summary>
+        /// Pobranie listy rezerwacji użytkownika
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public List<Reservation> GetReservationList(Guid id)
         {
-            return user.getReservationsList();
+            User user = User.GetById(id);
+            if (user == null) return null;
+            return user.reservations;
+        }
+
+        /// <summary>
+        /// Pobranie szczegółów filmu
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public FileContentResponseDTO GetMoviePoster(Guid id)
+        {
+            Movie movie = Movie.GetById(id);
+            if (movie == null) return new FileContentResponseDTO { Message = "Nie znaleziono filmu o podanym identyfikatorze" };
+            return new FileContentResponseDTO { Content = movie.imageData };
         }
     }
 }
