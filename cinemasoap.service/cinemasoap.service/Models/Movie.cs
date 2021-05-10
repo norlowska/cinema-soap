@@ -11,7 +11,6 @@ namespace cinemasoap.service.Models
     [DataContract]
     public class Movie
     {
-        [DataMember]
         public Guid movieID;
         [DataMember]
         public String title; //tytuł filmu
@@ -20,12 +19,9 @@ namespace cinemasoap.service.Models
         [DataMember]
         public byte[] imageData;
         [DataMember]
-        public Image image; //Grafika 
-        [DataMember]
         public List<Character> characters;
         [DataMember]
         public List<CrewMember> crew;
-        [DataMember]
         public bool deleted = false; //zmienna logiczna
 
         public void setTitle(String newTitle)
@@ -46,16 +42,6 @@ namespace cinemasoap.service.Models
         public string getDesc()
         {
             return desc;
-        }
-
-        public void setImage()
-        {
-            //Trzeba dopisać metodę dodawania grafiki
-        }
-
-        public Image getImage()
-        {
-            return image;
         }
 
         public void AddCharacter(Character character)
@@ -85,7 +71,7 @@ namespace cinemasoap.service.Models
 
         public static List<Movie> GetRepertoire(CinemaContext dc, DateTime date)
         {
-            return dc.Screenings.Where(item => item.fullDate == date).Select(item => item.movie).ToList();
+            return dc.Screenings.Where(item => item.fullDate.ToString("yyyy-MM-dd") == date.ToString("yyyy-MM-dd")).Select(item => item.movie).ToList();
         }
 
         public static Movie GetById(Guid id)

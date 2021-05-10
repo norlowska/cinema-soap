@@ -9,25 +9,20 @@ namespace cinemasoap.service.Models
     [DataContract]
     public class Seat
     {
-        [DataMember]
         public Guid SeatID;
-        [DataMember]
         public Screen screen;
         [DataMember]
-        public int row;
+        public int Row;
         [DataMember]
-        public int innerSeat;
-        [DataMember]
-        public Reservation reservation;
+        public int SeatNumber;
 
         public Seat()
         {
             SeatID = Guid.NewGuid();
 
             screen = null;
-            row = 0;
-            innerSeat = 0;
-            reservation = null;
+            Row = 1;
+            SeatNumber = 1;
         }
 
         public void setScreen(Screen newScreen)
@@ -42,32 +37,12 @@ namespace cinemasoap.service.Models
 
         public void setRow(int num)
         {
-            row = num;
+            Row = num;
         }
 
         public int getRow()
         {
-            return row;
-        }
-
-        public void setInnerSeat(int num)
-        {
-            innerSeat = num;
-        }
-
-        public int getInnerSeat()
-        {
-            return innerSeat;
-        }
-
-        public void setReservation(Reservation newReservation)
-        {
-            reservation = newReservation;
-        }
-
-        public Reservation getReservation()
-        {
-            return reservation;
+            return Row;
         }
 
         public Guid getSeatID()

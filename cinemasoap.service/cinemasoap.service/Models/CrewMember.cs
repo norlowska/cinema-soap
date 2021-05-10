@@ -9,19 +9,16 @@ namespace cinemasoap.service.Models
     [DataContract]
     public class CrewMember
     {
-        [DataMember]
         public Guid crewMemberID;
         [DataMember]
-        public string firstName;
+        public string firstName = "";
         [DataMember]
-        public string secondName;
+        public string secondName = "";
         [DataMember]
-        public string lastName;
+        public string lastName = "";
         [DataMember]
-        public string job; //można przerobić na enum'a? 
-        [DataMember]
+        public string job = ""; //można przerobić na enum'a? 
         public bool deleted = false; //zmienna logiczna
-        [DataMember]
         public Guid movieID;
 
         public CrewMember()

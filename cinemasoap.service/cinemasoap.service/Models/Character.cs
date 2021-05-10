@@ -9,15 +9,12 @@ namespace cinemasoap.service.Models
     [DataContract]
     public class Character
     {
-        [DataMember]
         public Guid characterID;
         [DataMember]
-        public string characterName;
+        public string characterName = "";
         [DataMember]
         public Actor actor;
-        [DataMember]
         public bool deleted = false;
-        [DataMember]
         public Guid movieID;
 
         public Character()

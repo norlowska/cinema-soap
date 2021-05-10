@@ -1,4 +1,5 @@
 ﻿using cinemasoap.service.Models;
+using cinemasoap.service.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,9 @@ namespace cinemasoap.service
         /// </summary>
         /// <param name="date">Data</param>
         /// <returns>Lista filmów wraz z seansami w danym dniu</returns>
-        public List<Movie> GetRepertoire(DateTime date)
+        public List<Screening> GetRepertoire(DateTime date)
         {
-            CinemaContext dc = CinemaContext.GetContext();
-            return Movie.GetRepertoire(dc, date);
+            return Screening.GetRepertoire(date);
         }
 
         /// <summary>
@@ -47,16 +47,32 @@ namespace cinemasoap.service
             return Reservation.editReservation(newReservation);
         }
 
-        public byte[] BookScreening(Guid id, int[][] chosenSeats, Guid userID)
+        /// <summary>
+        /// Rezerwacja miejsc na seans filmowy
+        /// </summary>
+        /// <param name="screeningID">Identyfikator seansu</param>
+        /// <param name="chosenSeats">Tablica wybranych miejsc </param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        public FileContentResult BookScreening(Guid screeningID, List<Seat> chosenSeats, Guid userID)
         {
-            Screening screening = Screening.GetById(id);
-        Reservation reservation = new Reservation();
-        List<Seat> seats = reservation.ConvertSeatsTabToList(screening.screeningID ,chosenSeats);
-            if(screening != null)
+            try
             {
-                return reservation.bookScreening(screening, seats, userID);
+                Screening screening = Screening.GetById(screeningID);
+                if (screening != null)
+                {
+                    Reservation newReservation = Reservation.bookScreening(screening, chosenSeats, userID);
+                    if (newReservation == null) return new FileContentResult { Message = "Wybrane miejsca są zajęte." };
+                    byte[] pdfBytes = newReservation.preparePDF();
+                    if (pdfBytes == null) return new FileContentResult { Message = "Wystąpił błąd podczas generowania potwierdzenia rezerwacji." };
+                    return new FileContentResult { Content = pdfBytes };
+                }
+                return new FileContentResult { Message = "Nie znaleziono seansu."};
             }
-            return null;
+            catch (Exception ex)
+            {
+                return new FileContentResult { Message = "Wystąpił błąd podczas rezerwowania miejsc. " + ex.Message };
+            }
         }
 
 

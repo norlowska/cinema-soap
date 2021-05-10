@@ -187,10 +187,10 @@ namespace cinemasoap.service.Models
         private void InitScreenings()
         {
             Screenings = new List<Screening>();
-            Screenings.Add(new Screening { screeningID = new Guid("8a4b86e4-acc9-476f-bae4-a58038791ed6"), fullDate = new DateTime(2021, 5, 11, 12, 00, 00), movie = Movies.Where(item => item.movieID == new Guid("c2b5f1fa-976b-4836-b0d6-0ee2d8e4efe0")).FirstOrDefault(), screen = Screens.Where(item => item.screenID == new Guid("40bf5176-ebac-4b14-aaf8-da474480e432")).FirstOrDefault() });
-            Screenings.Add(new Screening { screeningID = new Guid("dae8591e-ecd7-4a3b-b9d2-76c17cc2042a"), fullDate = new DateTime(2021, 5, 11, 15, 45, 00), movie = Movies.Where(item => item.movieID == new Guid("c2b5f1fa-976b-4836-b0d6-0ee2d8e4efe0")).FirstOrDefault(), screen = Screens.Where(item => item.screenID == new Guid("40bf5176-ebac-4b14-aaf8-da474480e432")).FirstOrDefault() });
-            Screenings.Add(new Screening { screeningID = new Guid("db57ec8e-5259-496f-91c1-b560bdb757d6"), fullDate = new DateTime(2021, 5, 11, 20, 00, 00), movie = Movies.Where(item => item.movieID == new Guid("c2b5f1fa-976b-4836-b0d6-0ee2d8e4efe0")).FirstOrDefault(), screen = Screens.Where(item => item.screenID == new Guid("40bf5176-ebac-4b14-aaf8-da474480e432")).FirstOrDefault() });
-            Screenings.Add(new Screening { screeningID = new Guid("c486acd6-c62f-495e-b726-bd3acc8ccbaa"), fullDate = new DateTime(2021, 5, 11, 21, 00, 00), movie = Movies.Where(item => item.movieID == new Guid("c2b5f1fa-976b-4836-b0d6-0ee2d8e4efe0")).FirstOrDefault(), screen = Screens.Where(item => item.screenID == new Guid("6bb909d4-57a4-48a3-b067-65edbe64ad3d")).FirstOrDefault() });
+            Screenings.Add(new Screening (new Guid("8a4b86e4-acc9-476f-bae4-a58038791ed6"), new DateTime(2021, 5, 11, 12, 00, 00), Movies.Where(item => item.movieID == new Guid("c2b5f1fa-976b-4836-b0d6-0ee2d8e4efe0")).FirstOrDefault(), Screens.Where(item => item.screenID == new Guid("40bf5176-ebac-4b14-aaf8-da474480e432")).FirstOrDefault()));
+            Screenings.Add(new Screening (new Guid("dae8591e-ecd7-4a3b-b9d2-76c17cc2042a"), new DateTime(2021, 5, 11, 15, 45, 00), Movies.Where(item => item.movieID == new Guid("c2b5f1fa-976b-4836-b0d6-0ee2d8e4efe0")).FirstOrDefault(), Screens.Where(item => item.screenID == new Guid("40bf5176-ebac-4b14-aaf8-da474480e432")).FirstOrDefault()));
+            Screenings.Add(new Screening (new Guid("db57ec8e-5259-496f-91c1-b560bdb757d6"), new DateTime(2021, 5, 11, 20, 00, 00), Movies.Where(item => item.movieID == new Guid("c2b5f1fa-976b-4836-b0d6-0ee2d8e4efe0")).FirstOrDefault(), Screens.Where(item => item.screenID == new Guid("40bf5176-ebac-4b14-aaf8-da474480e432")).FirstOrDefault()));
+            Screenings.Add(new Screening (new Guid("c486acd6-c62f-495e-b726-bd3acc8ccbaa"), new DateTime(2021, 5, 11, 21, 00, 00), Movies.Where(item => item.movieID == new Guid("c2b5f1fa-976b-4836-b0d6-0ee2d8e4efe0")).FirstOrDefault(), Screens.Where(item => item.screenID == new Guid("6bb909d4-57a4-48a3-b067-65edbe64ad3d")).FirstOrDefault()));
         }
 
         /// <summary>
@@ -215,8 +215,8 @@ namespace cinemasoap.service.Models
                 {
                     if ((i == 0 && j < 9) || ((i > 0 && i < 9) && j < 12) || ((i == 9 || i == 10) &&  j < 14) || i == 15)
                     {
-                        Seats.Add(new Seat { SeatID = Guid.NewGuid(), innerSeat = j + 1, row = i + 1, screen = Screens.Where(item => item.screenID == new Guid("40bf5176-ebac-4b14-aaf8-da474480e432")).FirstOrDefault() });
-                        Seats.Add(new Seat { SeatID = Guid.NewGuid(), innerSeat = j + 1, row = i + 1, screen = Screens.Where(item => item.screenID == new Guid("694025a3-c7a5-4464-a78a-ce666f19da37")).FirstOrDefault() });
+                        Seats.Add(new Seat { SeatID = Guid.NewGuid(), SeatNumber = j + 1, Row = i + 1, screen = Screens.Where(item => item.screenID == new Guid("40bf5176-ebac-4b14-aaf8-da474480e432")).FirstOrDefault() });
+                        Seats.Add(new Seat { SeatID = Guid.NewGuid(), SeatNumber = j + 1, Row = i + 1, screen = Screens.Where(item => item.screenID == new Guid("694025a3-c7a5-4464-a78a-ce666f19da37")).FirstOrDefault() });
                     }
                 }   
             }
@@ -227,10 +227,13 @@ namespace cinemasoap.service.Models
                 {
                     if ((i == 0 && j < 12) || ((i == 1 || i == 2 || i == 10) && j < 13) || (i > 2 && i < 10) || i > 10)
                     {
-                        Seats.Add(new Seat { SeatID = Guid.NewGuid(), innerSeat = j + 1, row = i + 1, screen = Screens.Where(item => item.screenID == new Guid("6bb909d4-57a4-48a3-b067-65edbe64ad3d")).FirstOrDefault() });
+                        Seats.Add(new Seat { SeatID = Guid.NewGuid(), SeatNumber = j + 1, Row = i + 1, screen = Screens.Where(item => item.screenID == new Guid("6bb909d4-57a4-48a3-b067-65edbe64ad3d")).FirstOrDefault() });
                     }
                 }
             }
+
+            foreach (var screen in Screens)
+                screen.seats = Seats.Where(item => item.screen.screenID == screen.screenID).ToList();
         }
 
         /// <summary>
@@ -240,7 +243,7 @@ namespace cinemasoap.service.Models
         {
             Users = new List<User>
             {
-                new User { email="kontakt@norlowska.com", password="epMz1AKqh2IAZvi+qcRbxAWOGCfaQBqhLGyU98g5pgDiTsCA", firstName="Natalia", lastName="Orłowska" }
+                new User { userID = new Guid("0a3c1947-19de-4942-a2dd-0bf2a2c9cff5"), email="kontakt@norlowska.com", password="epMz1AKqh2IAZvi+qcRbxAWOGCfaQBqhLGyU98g5pgDiTsCA", firstName="Natalia", lastName="Orłowska" }
             };
         }
 
