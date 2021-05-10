@@ -50,8 +50,8 @@ namespace cinemasoap.service
         public byte[] BookScreening(Guid id, int[][] chosenSeats, Guid userID)
         {
             Screening screening = Screening.GetById(id);
-            Reservation reservation = new Reservation();
-            List<Seat> seats = reservation.ConvertSeatsTabToList(screening.screeningID ,chosenSeats);
+        Reservation reservation = new Reservation();
+        List<Seat> seats = reservation.ConvertSeatsTabToList(screening.screeningID ,chosenSeats);
             if(screening != null)
             {
                 return reservation.bookScreening(screening, seats, userID);

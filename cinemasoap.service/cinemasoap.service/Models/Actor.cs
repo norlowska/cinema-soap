@@ -19,7 +19,6 @@ namespace cinemasoap.service.Models
         public string lastName;
         [DataMember]
         public bool deleted=false;
-        [DataMember]
         public string FullName { get { return firstName + " " + lastName; } }
 
         public Actor()

@@ -16,9 +16,9 @@ namespace cinemasoap.service.Models
         [DataMember]
         public Movie movie; //odwołanie do filmu
         [DataMember]
-        public string date { get { return fullDate.ToString("DD/MM/YYYY"); } } //zmienna pomocnicza- wyswietla datę w stringu
+        public string date; //zmienna pomocnicza- wyswietla datę w stringu
         [DataMember]
-        public string time { get { return fullDate.ToString("HH:mm"); } } //zmienna pomocnicza- wyswietla godzinę w stringu
+        public string time; //zmienna pomocnicza- wyswietla godzinę w stringu
         [DataMember]
         public DateTime fullDate;   //pełna data, do przekazania w argumecnie do konstruktora!
         [DataMember]
@@ -35,6 +35,8 @@ namespace cinemasoap.service.Models
         {
             screeningID = Guid.NewGuid();
             fullDate = movieScreeningDate;
+            date = getDate();
+            time = getTime();
             CinemaContext dc = CinemaContext.GetContext();
             movie = dc.Movies.Where(item => item.movieID == movieId).FirstOrDefault();
             deleted = false;
