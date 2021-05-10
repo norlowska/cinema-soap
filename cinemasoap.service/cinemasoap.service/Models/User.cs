@@ -172,5 +172,10 @@ namespace cinemasoap.service.Models
         {
             return CinemaContext.GetContext().Users.Where(item => item.userID == id).FirstOrDefault();
         }
+
+        public List<Reservation> getReservation()
+        {
+            return reservations;
+        }
     }
 }

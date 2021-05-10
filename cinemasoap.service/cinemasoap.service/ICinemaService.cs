@@ -30,5 +30,9 @@ namespace cinemasoap.service
         [OperationContract]
         [UsernamePasswordAuthentication]
         byte[] BookScreening(Guid id, int[][] chosenSeats, Guid userID);
+
+        [OperationContract]
+        [UsernamePasswordAuthentication]
+        List<Reservation> GetReservationList(User user);
     }
 }
