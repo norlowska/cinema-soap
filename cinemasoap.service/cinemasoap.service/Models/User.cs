@@ -27,6 +27,16 @@ namespace cinemasoap.service.Models
         [DataMember]
         public bool deleted = false;
 
+        public User(Guid userId, string email, string password, string firstName, string lastName)
+        {
+            this.userID = userId;
+            this.email = email;
+            this.password = password;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.reservations = new List<Reservation>();
+
+        }
         public void setEmail(string newEmail)
         {
             email = newEmail;

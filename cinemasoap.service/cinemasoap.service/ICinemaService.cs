@@ -1,5 +1,5 @@
 ﻿using cinemasoap.service.Models;
-using cinemasoap.service.Results;
+using cinemasoap.service.SoapDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +26,10 @@ namespace cinemasoap.service
 
         [OperationContract]
         [UsernamePasswordAuthentication]
-        bool EditReservation(Reservation newReservation);
+        bool EditReservation(EditReservationRequestDTO newReservation);
 
         [OperationContract]
         [UsernamePasswordAuthentication]
-        FileContentResult BookScreening(Guid screeningID, List<Seat> chosenSeats, Guid userID);
+        FileContentResponseDTO BookScreening(Guid screeningID, List<Seat> chosenSeats, Guid userID);
     }
 }

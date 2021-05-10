@@ -243,7 +243,7 @@ namespace cinemasoap.service.Models
         {
             Users = new List<User>
             {
-                new User { userID = new Guid("0a3c1947-19de-4942-a2dd-0bf2a2c9cff5"), email="kontakt@norlowska.com", password="epMz1AKqh2IAZvi+qcRbxAWOGCfaQBqhLGyU98g5pgDiTsCA", firstName="Natalia", lastName="Orłowska" }
+                new User (new Guid("0a3c1947-19de-4942-a2dd-0bf2a2c9cff5"), "kontakt@norlowska.com", "epMz1AKqh2IAZvi+qcRbxAWOGCfaQBqhLGyU98g5pgDiTsCA", "Natalia", "Orłowska")
             };
         }
 

@@ -1,5 +1,5 @@
 ﻿using cinemasoap.service.Models;
-using cinemasoap.service.Results;
+using cinemasoap.service.SoapDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +42,7 @@ namespace cinemasoap.service
             return false;
         }
 
-        public bool EditReservation(Reservation newReservation)
+        public bool EditReservation(EditReservationRequestDTO newReservation)
         {            
             return Reservation.editReservation(newReservation);
         }
@@ -54,7 +54,7 @@ namespace cinemasoap.service
         /// <param name="chosenSeats">Tablica wybranych miejsc </param>
         /// <param name="userID"></param>
         /// <returns></returns>
-        public FileContentResult BookScreening(Guid screeningID, List<Seat> chosenSeats, Guid userID)
+        public FileContentResponseDTO BookScreening(Guid screeningID, List<Seat> chosenSeats, Guid userID)
         {
             try
             {
@@ -62,16 +62,16 @@ namespace cinemasoap.service
                 if (screening != null)
                 {
                     Reservation newReservation = Reservation.bookScreening(screening, chosenSeats, userID);
-                    if (newReservation == null) return new FileContentResult { Message = "Wybrane miejsca są zajęte." };
+                    if (newReservation == null) return new FileContentResponseDTO { Message = "Wybrane miejsca są zajęte." };
                     byte[] pdfBytes = newReservation.preparePDF();
-                    if (pdfBytes == null) return new FileContentResult { Message = "Wystąpił błąd podczas generowania potwierdzenia rezerwacji." };
-                    return new FileContentResult { Content = pdfBytes };
+                    if (pdfBytes == null) return new FileContentResponseDTO { Message = "Wystąpił błąd podczas generowania potwierdzenia rezerwacji." };
+                    return new FileContentResponseDTO { Content = pdfBytes, Message = newReservation.reservationID.ToString() };
                 }
-                return new FileContentResult { Message = "Nie znaleziono seansu."};
+                return new FileContentResponseDTO { Message = "Nie znaleziono seansu."};
             }
             catch (Exception ex)
             {
-                return new FileContentResult { Message = "Wystąpił błąd podczas rezerwowania miejsc. " + ex.Message };
+                return new FileContentResponseDTO { Message = "Wystąpił błąd podczas rezerwowania miejsc. " + ex.Message };
             }
         }
 

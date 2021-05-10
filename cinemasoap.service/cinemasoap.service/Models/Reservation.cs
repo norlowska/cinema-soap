@@ -9,6 +9,7 @@ using System.Runtime.Serialization;
 using System.Web;
 using System.Xml.Linq;
 using System.Text;
+using cinemasoap.service.SoapDTO;
 
 namespace cinemasoap.service.Models
 {
@@ -76,10 +77,12 @@ namespace cinemasoap.service.Models
             {
                 CinemaContext cinemaContext = CinemaContext.GetContext();
                 Reservation newReservation = new Reservation();
-                newReservation.user = User.GetById(userID);
+                User user = User.GetById(userID);
+                newReservation.user = user;
                 newReservation.screening = screening;
                 chosenSeats.ForEach(item => item.SeatID = cinemaContext.Seats.Where(i => i.screen.screenID == screening.screen.screenID && i.Row == item.Row && i.SeatNumber == item.SeatNumber).FirstOrDefault().SeatID);
                 newReservation.seats = chosenSeats;
+                user.reservations.Add(newReservation);
                 cinemaContext.Reservations.Add(newReservation);
                 return newReservation;                
             }
@@ -168,30 +171,14 @@ namespace cinemasoap.service.Models
 
         public bool cancelReservation()
         {
-            if (clearSeats(this.seats) != 1) return false;
-            else
-            {
+            try { 
                 CinemaContext cinemaContext = CinemaContext.GetContext();
-                cinemaContext.Reservations.Remove(this);
-                this.user.reservations.Remove(this);
-            }
+            this.user.reservations.Remove(this);
+            cinemaContext.Reservations.Remove(this);
             return true;
-        }
-
-        private static int clearSeats(List<Seat> canceledSeats)
-        {
-            try
+            } catch(Exception ex)
             {
-                CinemaContext cinemaContext = CinemaContext.GetContext();
-                foreach (Seat cs in canceledSeats)
-                {
-                    cinemaContext.Seats.Remove(cs);
-                }
-                return 1;
-            }
-            catch
-            {
-                return -1;
+                return false;
             }
         }
 
@@ -205,27 +192,18 @@ namespace cinemasoap.service.Models
             return CinemaContext.GetContext().Reservations.Where(item => item.reservationID == id).FirstOrDefault();
         }
 
-        public static bool editReservation(Reservation editedReservation)   //return 1 if function was successful and -1 when occurs any errors
+        public static bool editReservation(EditReservationRequestDTO editedReservation)   //return 1 if function was successful and -1 when occurs any errors
         {
-            CinemaContext cinema = CinemaContext.GetContext();
-            foreach(Reservation r in cinema.Reservations)
+            CinemaContext cinemaContext = CinemaContext.GetContext();
+            Reservation originalReservation = cinemaContext.Reservations.Where(item => item.reservationID == editedReservation.reservationID).FirstOrDefault();
+            if (originalReservation != null)
             {
-                if(r.reservationID == editedReservation.reservationID)
+                if (originalReservation.screening.checkSeats(editedReservation.seats)) return false; //check if editedReservation's seats aren't already taken
+                else
                 {
-                    if (r.screening.checkSeats(editedReservation.seats)) return false; //check if editedReservation's seats aren't already taken
-                    else
-                    {
-                        r.seats = editedReservation.seats;
-                        clearSeats(r.seats);    //deleted old seats
-                        foreach (Seat s in editedReservation.seats)  //add seats from editedReservation
-                        {
-                            cinema.Seats.Add(s);
-                        }
-
-                        r.screening = editedReservation.screening;
-                        r.user = editedReservation.user;
-                        return true;
-                    }
+                    editedReservation.seats.ForEach(item => item.SeatID = cinemaContext.Seats.Where(i => i.screen.screenID == originalReservation.screening.screen.screenID && i.Row == item.Row && i.SeatNumber == item.SeatNumber).FirstOrDefault().SeatID);
+                    originalReservation.seats = editedReservation.seats;
+                    return true;
                 }
             }
             return false;

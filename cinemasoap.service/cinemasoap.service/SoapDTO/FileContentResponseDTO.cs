@@ -4,10 +4,10 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
 
-namespace cinemasoap.service.Results
+namespace cinemasoap.service.SoapDTO
 {
     [DataContract]
-    public class FileContentResult
+    public class FileContentResponseDTO
     {
         [DataMember]
         public byte[] Content;
