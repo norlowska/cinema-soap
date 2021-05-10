@@ -9,15 +9,12 @@ namespace cinemasoap.service.Models
     [DataContract]
     public class Screen
     {
-        [DataMember]
         public Guid screenID;
         [DataMember]
         public string screenName;
         [DataMember]
         public int screenSize;
-        [DataMember]
         public List<Seat> seats;
-        [DataMember]
         public LinkedList<Screening> screenings;
 
         public Screen()

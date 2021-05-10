@@ -1,4 +1,5 @@
 ﻿using cinemasoap.service.Models;
+using cinemasoap.service.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace cinemasoap.service
     public interface ICinemaService
     {
         [OperationContract]
-        List<Movie> GetRepertoire(DateTime date);
+        List<Screening> GetRepertoire(DateTime date);
 
         [OperationContract]
         bool SignUp(User user);

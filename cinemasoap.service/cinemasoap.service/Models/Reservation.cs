@@ -15,7 +15,6 @@ namespace cinemasoap.service.Models
     [DataContract]
     public class Reservation
     {
-        [DataMember]
         public Guid reservationID;
         [DataMember]
         public User user;
@@ -70,23 +69,19 @@ namespace cinemasoap.service.Models
             return reservationID;
         }
 
-        public Byte[] bookScreening(Screening screening, List<Seat> bookedSeats, Guid userID) //w argumecnie/broszurze trzeba przekazać na jaki seans oraz jake siedzenia rezerwujesz oraz uzytkownika
+        public static Reservation bookScreening(Screening screening, List<Seat> chosenSeats, Guid userID) //w argumecnie/broszurze trzeba przekazać na jaki seans oraz jake siedzenia rezerwujesz oraz uzytkownika
         {
-            if (checkSeats(bookedSeats) != 1) return null;
+            if (screening.checkSeats(chosenSeats)) return null;
             else
             {
                 CinemaContext cinemaContext = CinemaContext.GetContext();
                 Reservation newReservation = new Reservation();
                 newReservation.user = User.GetById(userID);
                 newReservation.screening = screening;
-                newReservation.seats = bookedSeats;
-                foreach(Seat s in seats)
-                {
-                    cinemaContext.Seats.Add(s);
-                }
+                chosenSeats.ForEach(item => item.SeatID = cinemaContext.Seats.Where(i => i.screen.screenID == screening.screen.screenID && i.Row == item.Row && i.SeatNumber == item.SeatNumber).FirstOrDefault().SeatID);
+                newReservation.seats = chosenSeats;
                 cinemaContext.Reservations.Add(newReservation);
-                return preparePDF(newReservation);
-                
+                return newReservation;                
             }
         }
 
@@ -99,59 +94,42 @@ namespace cinemasoap.service.Models
             {
                 seatsList.Add(cinemaContext.Seats.FirstOrDefault(Seat => 
                 {
-                    return Seat.screen == screening.screen && Seat.row == seatsTab[i][0] && Seat.innerSeat == seatsTab[i][1];
+                    return Seat.screen == screening.screen && Seat.Row == seatsTab[i][0] && Seat.SeatNumber == seatsTab[i][1];
                 }
                 ));
             }
             return seatsList;
         }
 
-        private static int checkSeats(List<Seat> bookedSeats)
-        {
-            CinemaContext cinemaContext = CinemaContext.GetContext();
-
-            foreach (Seat bs in bookedSeats)
-            {
-                foreach (Seat s in cinemaContext.Seats)
-                {
-                    if (bs.row == s.row)
-                    {
-                        return -1;
-                    }
-                    else continue;
-                }
-            }
-            return 1;
-        }
-
-        private Byte[] preparePDF(Reservation reservation)
+        public Byte[] preparePDF()
         {
             try
             {
-                TextWriter writeFile = new StreamWriter("Text.txt");
+                string filePath = Path.Combine(System.Configuration.ConfigurationManager.AppSettings["AppDataPath"], $"Reservation{this.reservationID}");
+                TextWriter writeFile = new StreamWriter(filePath + ".txt");
 
                 writeFile.WriteLine("Reservation no. " + Guid.NewGuid());
                 writeFile.WriteLine();
-                writeFile.WriteLine("Movie: " + reservation.screening.movie.title);
-                writeFile.WriteLine("Data: " + reservation.screening.date + " ,Time: " + reservation.screening.time);
-                writeFile.WriteLine("Screen no. " + reservation.screening.screen.getScreenID());
+                writeFile.WriteLine("Movie: " + this.screening.movie.title);
+                writeFile.WriteLine("Data: " + this.screening.date + " ,Time: " + this.screening.time);
+                writeFile.WriteLine("Screen no. " + this.screening.screen.screenName);
                 writeFile.WriteLine("Seats: ");
                 foreach(Seat s in seats)
                 {
-                    writeFile.WriteLine("Seat: " + s.innerSeat + ", Row: " + s.row);
+                    writeFile.WriteLine("Seat: " + s.SeatNumber + ", Row: " + s.Row);
                 }
                 writeFile.WriteLine();
                 writeFile.WriteLine("User:");
-                writeFile.WriteLine("Email: " + reservation.user.email);
-                writeFile.WriteLine("First Name " + reservation.user.firstName);
-                writeFile.WriteLine("Last Name " + reservation.user.lastName);
-                writeFile.WriteLine("ID " + reservation.user.userID);
+                writeFile.WriteLine("Email: " + this.user.email);
+                writeFile.WriteLine("First Name " + this.user.firstName);
+                writeFile.WriteLine("Last Name " + this.user.lastName);
+                //writeFile.WriteLine("ID " + this.user.userID);
 
                 writeFile.Close();
                 writeFile = null;
 
                 string line = null;
-                TextReader readFile = new StreamReader("Text.txt");
+                TextReader readFile = new StreamReader(filePath + ".txt");
                 int yPoint = 0;
 
                 PdfDocument pdf = new PdfDocument();
@@ -174,13 +152,11 @@ namespace cinemasoap.service.Models
                     }
                 }
 
-                string pdfFilename = "txttopdf.pdf";
-                pdf.Save(pdfFilename);
+                pdf.Save(filePath + ".pdf");
                 readFile.Close();
                 readFile = null;
                 //Process.Start(@"cmd.exe ", @"/c txttopdf.pdf");
-                string pdfFilePath = "txttopdf.pdf";
-                byte[] bytes = System.IO.File.ReadAllBytes(pdfFilePath);
+                byte[] bytes = System.IO.File.ReadAllBytes(filePath + ".pdf");
                 return bytes;
             }
             catch (Exception ex)
@@ -236,7 +212,7 @@ namespace cinemasoap.service.Models
             {
                 if(r.reservationID == editedReservation.reservationID)
                 {
-                    if (checkSeats(editedReservation.seats) != 1) return false; //check if editedReservation's seats aren't already taken
+                    if (r.screening.checkSeats(editedReservation.seats)) return false; //check if editedReservation's seats aren't already taken
                     else
                     {
                         r.seats = editedReservation.seats;
