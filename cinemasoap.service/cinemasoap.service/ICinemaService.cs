@@ -15,7 +15,8 @@ namespace cinemasoap.service
     public interface ICinemaService
     {
         [OperationContract]
-        List<Screening> GetRepertoire(DateTime date);
+        [WebInvoke(ResponseFormat =WebMessageFormat.Json)]
+        List<Screening> GetRepertoire(string date);
 
         [OperationContract]
         bool SignUp(User user);

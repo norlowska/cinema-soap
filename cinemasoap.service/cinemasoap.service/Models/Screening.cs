@@ -16,7 +16,7 @@ namespace cinemasoap.service.Models
         public Movie movie; //odwołanie do filmu
         public string date; //zmienna pomocnicza- wyswietla datę w stringu
         public string time; //zmienna pomocnicza- wyswietla godzinę w stringu
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public DateTime fullDate;   //pełna data, do przekazania w argumecnie do konstruktora!
         [DataMember]
         public Screen screen;

@@ -10,13 +10,13 @@ namespace cinemasoap.service.Models
     public class CrewMember
     {
         public Guid crewMemberID;
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public string firstName = "";
         [DataMember]
         public string secondName = "";
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public string lastName = "";
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public string job = ""; //można przerobić na enum'a? 
         public bool deleted = false; //zmienna logiczna
         public Guid movieID;

@@ -10,7 +10,7 @@ namespace cinemasoap.service.SoapDTO
     [DataContract]
     public class EditReservationRequestDTO
     {
-        [DataMember]
+        [DataMember(IsRequired =true)]
         public Guid reservationID;
         [DataMember]
         public List<Seat> seats;

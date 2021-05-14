@@ -19,9 +19,9 @@ namespace cinemasoap.service
         /// </summary>
         /// <param name="date">Data</param>
         /// <returns>Lista filmów wraz z seansami w danym dniu</returns>
-        public List<Screening> GetRepertoire(DateTime date)
+        public List<Screening> GetRepertoire(string date)
         {
-            return Screening.GetRepertoire(date);
+            return Screening.GetRepertoire(DateTime.Parse(date));
         }
 
         /// <summary>

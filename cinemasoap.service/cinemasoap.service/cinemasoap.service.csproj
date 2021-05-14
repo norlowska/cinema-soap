@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CinemaService.svc" />
+    <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +85,9 @@
       <DependentUpon>CinemaService.svc</DependentUpon>
     </Compile>
     <Compile Include="CrewMemberJob.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\CinemaContext.cs" />

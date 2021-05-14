@@ -17,13 +17,12 @@ namespace cinemasoap.service.Models
     public class Reservation
     {
         public Guid reservationID;
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public User user;
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public Screening screening;
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public List<Seat> seats;
-        [DataMember]
         public bool deleted = false;
 
         public Reservation()

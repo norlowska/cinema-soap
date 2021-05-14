@@ -10,11 +10,11 @@ namespace cinemasoap.service.Models
     public class Actor
     {
         public Guid actorID;
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public string firstName = "";
         [DataMember]
         public string secondName = "";
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public string lastName = "";
         public bool deleted=false;
         public string FullName { get { return firstName + " " + lastName; } }
