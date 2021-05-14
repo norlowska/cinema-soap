@@ -16,7 +16,7 @@ namespace cinemasoap.service
     {
         [OperationContract]
         [WebInvoke(ResponseFormat =WebMessageFormat.Json)]
-        List<Screening> GetRepertoire(string date);
+        List<Movie> GetRepertoire(string date);
 
         [OperationContract]
         bool SignUp(User user);

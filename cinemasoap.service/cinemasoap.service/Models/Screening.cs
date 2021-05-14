@@ -59,12 +59,6 @@ namespace cinemasoap.service.Models
             deleted = false;
         }
 
-        public static List<Screening> GetRepertoire(DateTime date)
-        {
-            var x = CinemaContext.GetContext().Screenings.Where(item => item.fullDate.ToString("yyyy-MM-dd") == date.ToString("yyyy-MM-dd")).ToList();
-            return x;
-        }
-
         public string getDate()
         {
             return fullDate.ToString("yyyy-MM-dd");

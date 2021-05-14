@@ -196,6 +196,15 @@ namespace cinemasoap.service.Models
             Screenings.Add(new Screening (new Guid("dae8591e-ecd7-4a3b-b9d2-76c17cc2042a"), new DateTime(2021, 5, 14, 15, 45, 00), Movies.Where(item => item.movieID == new Guid("c2b5f1fa-976b-4836-b0d6-0ee2d8e4efe0")).FirstOrDefault(), Screens.Where(item => item.screenID == new Guid("40bf5176-ebac-4b14-aaf8-da474480e432")).FirstOrDefault()));
             Screenings.Add(new Screening (new Guid("db57ec8e-5259-496f-91c1-b560bdb757d6"), new DateTime(2021, 5, 15, 20, 00, 00), Movies.Where(item => item.movieID == new Guid("c2b5f1fa-976b-4836-b0d6-0ee2d8e4efe0")).FirstOrDefault(), Screens.Where(item => item.screenID == new Guid("40bf5176-ebac-4b14-aaf8-da474480e432")).FirstOrDefault()));
             Screenings.Add(new Screening (new Guid("c486acd6-c62f-495e-b726-bd3acc8ccbaa"), new DateTime(2021, 5, 15, 21, 00, 00), Movies.Where(item => item.movieID == new Guid("c2b5f1fa-976b-4836-b0d6-0ee2d8e4efe0")).FirstOrDefault(), Screens.Where(item => item.screenID == new Guid("6bb909d4-57a4-48a3-b067-65edbe64ad3d")).FirstOrDefault()));
+
+            foreach (var movie in Movies)
+            {
+                movie.screenings = Screenings.Where(item => item.movie != null && item.movie.movieID == movie.movieID).ToList();
+                foreach(var screening in movie.screenings)
+                {
+                    screening.movie = null;
+                }
+            }
         }
 
         /// <summary>

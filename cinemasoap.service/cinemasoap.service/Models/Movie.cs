@@ -23,6 +23,8 @@ namespace cinemasoap.service.Models
         [DataMember]
         public List<CrewMember> crew;
         public bool deleted = false; //zmienna logiczna
+        [DataMember]
+        public List<Screening> screenings;
 
         public void setTitle(String newTitle)
         {
@@ -69,9 +71,15 @@ namespace cinemasoap.service.Models
             return movieID;
         }
 
-        public static List<Movie> GetRepertoire(CinemaContext dc, DateTime date)
+        public static List<Movie> GetRepertoire(DateTime date)
         {
-            return dc.Screenings.Where(item => item.fullDate.ToString("yyyy-MM-dd") == date.ToString("yyyy-MM-dd")).Select(item => item.movie).ToList();
+            CinemaContext dc = CinemaContext.GetContext();
+            List<Movie> movies = dc.Movies.Where(item => item.screenings.Any(i => i.fullDate.ToString("yyyy-MM-dd") == date.ToString("yyyy-MM-dd"))).ToList();
+            foreach(var m in movies)
+            {
+                m.screenings = m.screenings.Where(item => item.fullDate.ToString("yyyy-MM-dd") == date.ToString("yyyy-MM-dd")).ToList();
+            }
+            return movies;
         }
 
         public static Movie GetById(Guid id)

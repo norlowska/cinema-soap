@@ -8,8 +8,8 @@ import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
+import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfMovie;
 import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfReservation;
-import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfScreening;
 import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfSeat;
 import org.datacontract.schemas._2004._07.cinemasoap_service.EditReservationRequestDTO;
 import org.datacontract.schemas._2004._07.cinemasoap_service.FileContentResponseDTO;
@@ -24,9 +24,9 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.User;
  */
 @WebService(name = "ICinemaService", targetNamespace = "http://tempuri.org/")
 @XmlSeeAlso({
-    org.tempuri.ObjectFactory.class,
+    com.microsoft.schemas._2003._10.serialization.ObjectFactory.class,
     org.datacontract.schemas._2004._07.cinemasoap_service.ObjectFactory.class,
-    com.microsoft.schemas._2003._10.serialization.ObjectFactory.class
+    org.tempuri.ObjectFactory.class
 })
 public interface ICinemaService {
 
@@ -35,13 +35,13 @@ public interface ICinemaService {
      * 
      * @param date
      * @return
-     *     returns org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfScreening
+     *     returns org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfMovie
      */
     @WebMethod(operationName = "GetRepertoire", action = "http://tempuri.org/ICinemaService/GetRepertoire")
     @WebResult(name = "GetRepertoireResult", targetNamespace = "http://tempuri.org/")
     @RequestWrapper(localName = "GetRepertoire", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetRepertoire")
     @ResponseWrapper(localName = "GetRepertoireResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetRepertoireResponse")
-    public ArrayOfScreening getRepertoire(
+    public ArrayOfMovie getRepertoire(
         @WebParam(name = "date", targetNamespace = "http://tempuri.org/")
         String date);
 

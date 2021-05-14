@@ -1,4 +1,4 @@
-package sample;
+package cinemasoap.client;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -9,10 +9,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
-import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfScreening;
+import javafx.util.Callback;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Movie;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Screening;
 import org.tempuri.CinemaSoap;
@@ -23,7 +27,7 @@ import javax.xml.ws.soap.AddressingFeature;
 public class RepertoireController implements Initializable {
 
     private List<String> dates;
-    private List<Screening> screenings;
+    private ObservableList<Movie> movies;
 
     @FXML
     private ToggleButton  toggleDate1;
@@ -35,6 +39,8 @@ public class RepertoireController implements Initializable {
     private ToggleButton  toggleDate4;
     @FXML
     private ToggleButton  toggleDate5;
+    @FXML
+    private ListView repertoireList;
 
     public RepertoireController() {
 
@@ -48,7 +54,10 @@ public class RepertoireController implements Initializable {
         dates.add(DateTimeFormatter.ofPattern(pattern).format(LocalDateTime.from(now.toInstant().atZone(ZoneId.of("GMT+1"))).plusDays(4)));
         CinemaSoap cinemaSoap = new CinemaSoap();
         ICinemaService service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
-        screenings = service.getRepertoire(dates.get(0)).getScreening();
+
+        movies = FXCollections.observableArrayList();
+        List<Movie> list = service.getRepertoire(dates.get(0)).getMovie();
+        //movies.addAll();
     }
 
     @Override
@@ -58,5 +67,12 @@ public class RepertoireController implements Initializable {
         toggleDate3.setText(dates.get(2));
         toggleDate4.setText(dates.get(3));
         toggleDate5.setText(dates.get(4));
+        repertoireList.setItems(movies);
+        repertoireList.setCellFactory(new Callback<ListView<Movie>, ListCell<Movie>>() {
+            @Override
+            public ListCell call(ListView param) {
+                return null;
+            }
+        });
     }
 }

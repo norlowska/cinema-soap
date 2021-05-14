@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfScreening;
+import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfMovie;
 
 
 /**
@@ -20,7 +20,7 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfScreening;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="GetRepertoireResult" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}ArrayOfScreening" minOccurs="0"/>
+ *         &lt;element name="GetRepertoireResult" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}ArrayOfMovie" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,17 +37,17 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfScreening;
 public class GetRepertoireResponse {
 
     @XmlElementRef(name = "GetRepertoireResult", namespace = "http://tempuri.org/", type = JAXBElement.class)
-    protected JAXBElement<ArrayOfScreening> getRepertoireResult;
+    protected JAXBElement<ArrayOfMovie> getRepertoireResult;
 
     /**
      * Gets the value of the getRepertoireResult property.
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link ArrayOfScreening }{@code >}
+     *     {@link JAXBElement }{@code <}{@link ArrayOfMovie }{@code >}
      *     
      */
-    public JAXBElement<ArrayOfScreening> getGetRepertoireResult() {
+    public JAXBElement<ArrayOfMovie> getGetRepertoireResult() {
         return getRepertoireResult;
     }
 
@@ -56,11 +56,11 @@ public class GetRepertoireResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link ArrayOfScreening }{@code >}
+     *     {@link JAXBElement }{@code <}{@link ArrayOfMovie }{@code >}
      *     
      */
-    public void setGetRepertoireResult(JAXBElement<ArrayOfScreening> value) {
-        this.getRepertoireResult = ((JAXBElement<ArrayOfScreening> ) value);
+    public void setGetRepertoireResult(JAXBElement<ArrayOfMovie> value) {
+        this.getRepertoireResult = ((JAXBElement<ArrayOfMovie> ) value);
     }
 
 }

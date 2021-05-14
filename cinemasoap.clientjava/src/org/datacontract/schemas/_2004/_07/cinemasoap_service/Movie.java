@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="crew" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}ArrayOfCrewMember" minOccurs="0"/>
  *         &lt;element name="desc" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="movieID" type="{http://schemas.microsoft.com/2003/10/Serialization/}guid" minOccurs="0"/>
+ *         &lt;element name="screenings" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}ArrayOfScreening" minOccurs="0"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -37,6 +38,7 @@ import javax.xml.bind.annotation.XmlType;
     "crew",
     "desc",
     "movieID",
+    "screenings",
     "title"
 })
 public class Movie {
@@ -48,6 +50,8 @@ public class Movie {
     @XmlElementRef(name = "desc", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<String> desc;
     protected String movieID;
+    @XmlElementRef(name = "screenings", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
+    protected JAXBElement<ArrayOfScreening> screenings;
     @XmlElementRef(name = "title", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<String> title;
 
@@ -145,6 +149,30 @@ public class Movie {
      */
     public void setMovieID(String value) {
         this.movieID = value;
+    }
+
+    /**
+     * Gets the value of the screenings property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link ArrayOfScreening }{@code >}
+     *     
+     */
+    public JAXBElement<ArrayOfScreening> getScreenings() {
+        return screenings;
+    }
+
+    /**
+     * Sets the value of the screenings property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link ArrayOfScreening }{@code >}
+     *     
+     */
+    public void setScreenings(JAXBElement<ArrayOfScreening> value) {
+        this.screenings = ((JAXBElement<ArrayOfScreening> ) value);
     }
 
     /**
