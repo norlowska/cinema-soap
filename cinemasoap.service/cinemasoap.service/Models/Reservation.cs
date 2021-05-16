@@ -13,6 +13,7 @@ using cinemasoap.service.SoapDTO;
 
 namespace cinemasoap.service.Models
 {
+    [Serializable]
     [DataContract]
     public class Reservation
     {

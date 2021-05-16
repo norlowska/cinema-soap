@@ -9,14 +9,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ToggleButton;
-import javafx.util.Callback;
+import javafx.scene.control.*;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Movie;
 import org.tempuri.CinemaSoap;
 import org.tempuri.ICinemaService;
@@ -27,6 +26,7 @@ public class RepertoireController implements Initializable {
 
     private List<String> dates;
     private ObservableList<Movie> movies;
+    private ICinemaService service;
 
     @FXML
     private ToggleButton  toggleDate1;
@@ -40,6 +40,8 @@ public class RepertoireController implements Initializable {
     private ToggleButton  toggleDate5;
     @FXML
     private ListView repertoireList;
+    @FXML
+    private ToggleGroup dateToggle;
 
     public RepertoireController() {
 
@@ -52,7 +54,7 @@ public class RepertoireController implements Initializable {
         dates.add(DateTimeFormatter.ofPattern(pattern).format(LocalDateTime.from(now.toInstant().atZone(ZoneId.of("GMT+1"))).plusDays(3)));
         dates.add(DateTimeFormatter.ofPattern(pattern).format(LocalDateTime.from(now.toInstant().atZone(ZoneId.of("GMT+1"))).plusDays(4)));
         CinemaSoap cinemaSoap = new CinemaSoap();
-        ICinemaService service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
+        service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
 
         movies = FXCollections.observableArrayList();
         movies.addAll(service.getRepertoire(dates.get(0)).getMovie());
@@ -67,5 +69,18 @@ public class RepertoireController implements Initializable {
         toggleDate5.setText(dates.get(4));
         repertoireList.setItems(movies);
         repertoireList.setCellFactory(movieListView -> new MovieListCell());
+
+
+        dateToggle.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                if(dateToggle.getSelectedToggle() != null) {
+                    String dateStr = ((ToggleButton)dateToggle.getSelectedToggle()).getText();
+                    movies.remove(0, movies.size());
+                    movies.addAll(service.getRepertoire(dateStr).getMovie());
+                    System.out.println(movies);
+                }
+            }
+        });
     }
 }

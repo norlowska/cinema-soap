@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Drawing;
-using cinemasoap.service.Models;
 using System.Runtime.Serialization;
 
 namespace cinemasoap.service.Models
 {
+    [Serializable]
     [DataContract]
     public class Movie
     {
@@ -75,10 +73,10 @@ namespace cinemasoap.service.Models
         public static List<Movie> GetRepertoire(DateTime date)
         {
             CinemaContext dc = CinemaContext.GetContext();
-            List<Movie> movies = dc.Movies.Where(item => item.screenings.Any(i => i.fullDate.ToString("yyyy-MM-dd") == date.ToString("yyyy-MM-dd"))).ToList();
+            List<Movie> movies = dc.Movies.Where(item => item.screenings.Any(i => i.date == date.ToString("yyyy-MM-dd"))).Select(x => x.DeepClone()).ToList();
             foreach(var m in movies)
             {
-                m.screenings = m.screenings.Where(item => item.fullDate.ToString("yyyy-MM-dd") == date.ToString("yyyy-MM-dd")).ToList();
+                m.screenings = m.screenings.Where(item => item.date == date.ToString("yyyy-MM-dd")).Select(x=>x.DeepClone()).ToList();
             }
             return movies;
         }

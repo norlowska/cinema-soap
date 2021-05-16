@@ -8,6 +8,7 @@ using System.Web;
 
 namespace cinemasoap.service.Models
 {
+    [Serializable]
     [DataContract]
     public class Screening
     {

@@ -49,30 +49,30 @@ public class MovieListCell extends ListCell<Movie> {
                     mLLoader = new FXMLLoader(getClass().getResource("MovieListCellView.fxml"));
                     mLLoader.setController(this);
                     mLLoader.load();
-                    pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, !isSelected());
-                    title.setText(movie.getTitle().getValue());
-                    List<CrewMember> crewMemberList = movie.getCrew().getValue().getCrewMember();
-                    String directorStr = "reż. ";
-                    for(CrewMember cm : crewMemberList){
-                        if(cm.getJob().equals("Director"))
-                            directorStr += cm.getFirstName() +" "+ cm.getLastName() + ", ";
-                    };
-                    director.setText(directorStr.substring(0, directorStr.length()-2));
-                    description.setText(movie.getDesc().getValue());
-                    String castStr = "";
-                    for(Character item : movie.getCharacters().getValue().getCharacter()){
-                        Actor actor = item.getActor();
-                        castStr += actor.getFirstName() + " " + (actor.getSecondName().getValue() != null && !actor.getSecondName().getValue().isEmpty() ? actor.getSecondName().getValue() + " " : "") + item.getActor().getLastName() + ", ";
-                    }
-                    castStr =  castStr.substring(0, castStr.length() -2);
-                    cast.setText(castStr);
-                    poster.setImage(new Image(new ByteArrayInputStream((movie.getImageData().getValue()))));
-                    setText(null);
-                    setGraphic(anchorPane);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }
+            pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, !isSelected());
+            title.setText(movie.getTitle().getValue());
+            List<CrewMember> crewMemberList = movie.getCrew().getValue().getCrewMember();
+            String directorStr = "reż. ";
+            for(CrewMember cm : crewMemberList){
+                if(cm.getJob().equals("Director"))
+                    directorStr += cm.getFirstName() +" "+ cm.getLastName() + ", ";
+            };
+            director.setText(directorStr.substring(0, directorStr.length()-2));
+            description.setText(movie.getDesc().getValue());
+            String castStr = "";
+            for(Character item : movie.getCharacters().getValue().getCharacter()){
+                Actor actor = item.getActor();
+                castStr += actor.getFirstName() + " " + (actor.getSecondName().getValue() != null && !actor.getSecondName().getValue().isEmpty() ? actor.getSecondName().getValue() + " " : "") + item.getActor().getLastName() + ", ";
+            }
+            castStr =  castStr.substring(0, castStr.length() -2);
+            cast.setText(castStr);
+            poster.setImage(new Image(new ByteArrayInputStream((movie.getImageData().getValue()))));
+            setText(null);
+            setGraphic(anchorPane);
         }
     }
 }
