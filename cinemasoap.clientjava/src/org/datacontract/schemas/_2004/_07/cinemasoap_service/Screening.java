@@ -42,14 +42,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class Screening {
 
-    @XmlElementRef(name = "FreeSeats", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
+    @XmlElementRef(name = "FreeSeats", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
     protected JAXBElement<ArrayOfSeat> freeSeats;
     @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fullDate;
-    @XmlElementRef(name = "movie", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
+    @XmlElementRef(name = "movie", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
     protected JAXBElement<Movie> movie;
-    @XmlElementRef(name = "screen", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
+    @XmlElementRef(name = "screen", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
     protected JAXBElement<Screen> screen;
 
     /**
@@ -73,7 +73,7 @@ public class Screening {
      *     
      */
     public void setFreeSeats(JAXBElement<ArrayOfSeat> value) {
-        this.freeSeats = ((JAXBElement<ArrayOfSeat> ) value);
+        this.freeSeats = value;
     }
 
     /**
@@ -121,7 +121,7 @@ public class Screening {
      *     
      */
     public void setMovie(JAXBElement<Movie> value) {
-        this.movie = ((JAXBElement<Movie> ) value);
+        this.movie = value;
     }
 
     /**
@@ -145,7 +145,7 @@ public class Screening {
      *     
      */
     public void setScreen(JAXBElement<Screen> value) {
-        this.screen = ((JAXBElement<Screen> ) value);
+        this.screen = value;
     }
 
 }

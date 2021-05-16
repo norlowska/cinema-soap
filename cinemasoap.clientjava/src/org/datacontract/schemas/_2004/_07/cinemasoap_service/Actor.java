@@ -42,7 +42,7 @@ public class Actor {
     protected String firstName;
     @XmlElement(required = true, nillable = true)
     protected String lastName;
-    @XmlElementRef(name = "secondName", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
+    @XmlElementRef(name = "secondName", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
     protected JAXBElement<String> secondName;
 
     /**
@@ -114,7 +114,7 @@ public class Actor {
      *     
      */
     public void setSecondName(JAXBElement<String> value) {
-        this.secondName = ((JAXBElement<String> ) value);
+        this.secondName = value;
     }
 
 }

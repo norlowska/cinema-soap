@@ -17,6 +17,7 @@ namespace cinemasoap.service.Models
         public String title; //tytuł filmu
         [DataMember]
         public String desc; //Opis fiomu
+        [DataMember]
         public byte[] imageData;
         [DataMember]
         public List<Character> characters;

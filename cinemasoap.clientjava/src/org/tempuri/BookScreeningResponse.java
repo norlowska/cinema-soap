@@ -36,7 +36,7 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.FileContentResponse
 @XmlRootElement(name = "BookScreeningResponse")
 public class BookScreeningResponse {
 
-    @XmlElementRef(name = "BookScreeningResult", namespace = "http://tempuri.org/", type = JAXBElement.class)
+    @XmlElementRef(name = "BookScreeningResult", namespace = "http://tempuri.org/", type = JAXBElement.class, required = false)
     protected JAXBElement<FileContentResponseDTO> bookScreeningResult;
 
     /**
@@ -60,7 +60,7 @@ public class BookScreeningResponse {
      *     
      */
     public void setBookScreeningResult(JAXBElement<FileContentResponseDTO> value) {
-        this.bookScreeningResult = ((JAXBElement<FileContentResponseDTO> ) value);
+        this.bookScreeningResult = value;
     }
 
 }

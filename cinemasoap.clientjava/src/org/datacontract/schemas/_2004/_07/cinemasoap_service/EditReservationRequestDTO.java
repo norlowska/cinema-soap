@@ -38,7 +38,7 @@ public class EditReservationRequestDTO {
 
     @XmlElement(required = true)
     protected String reservationID;
-    @XmlElementRef(name = "seats", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", type = JAXBElement.class)
+    @XmlElementRef(name = "seats", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", type = JAXBElement.class, required = false)
     protected JAXBElement<ArrayOfSeat> seats;
 
     /**
@@ -86,7 +86,7 @@ public class EditReservationRequestDTO {
      *     
      */
     public void setSeats(JAXBElement<ArrayOfSeat> value) {
-        this.seats = ((JAXBElement<ArrayOfSeat> ) value);
+        this.seats = value;
     }
 
 }

@@ -35,9 +35,9 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class FileContentResponseDTO {
 
-    @XmlElementRef(name = "Content", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", type = JAXBElement.class)
+    @XmlElementRef(name = "Content", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", type = JAXBElement.class, required = false)
     protected JAXBElement<byte[]> content;
-    @XmlElementRef(name = "Message", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", type = JAXBElement.class)
+    @XmlElementRef(name = "Message", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", type = JAXBElement.class, required = false)
     protected JAXBElement<String> message;
 
     /**
@@ -61,7 +61,7 @@ public class FileContentResponseDTO {
      *     
      */
     public void setContent(JAXBElement<byte[]> value) {
-        this.content = ((JAXBElement<byte[]> ) value);
+        this.content = value;
     }
 
     /**
@@ -85,7 +85,7 @@ public class FileContentResponseDTO {
      *     
      */
     public void setMessage(JAXBElement<String> value) {
-        this.message = ((JAXBElement<String> ) value);
+        this.message = value;
     }
 
 }

@@ -18,7 +18,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
 import javafx.util.Callback;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Movie;
-import org.datacontract.schemas._2004._07.cinemasoap_service.Screening;
 import org.tempuri.CinemaSoap;
 import org.tempuri.ICinemaService;
 
@@ -56,8 +55,7 @@ public class RepertoireController implements Initializable {
         ICinemaService service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
 
         movies = FXCollections.observableArrayList();
-        List<Movie> list = service.getRepertoire(dates.get(0)).getMovie();
-        //movies.addAll();
+        movies.addAll(service.getRepertoire(dates.get(0)).getMovie());
     }
 
     @Override
@@ -68,11 +66,6 @@ public class RepertoireController implements Initializable {
         toggleDate4.setText(dates.get(3));
         toggleDate5.setText(dates.get(4));
         repertoireList.setItems(movies);
-        repertoireList.setCellFactory(new Callback<ListView<Movie>, ListCell<Movie>>() {
-            @Override
-            public ListCell call(ListView param) {
-                return null;
-            }
-        });
+        repertoireList.setCellFactory(movieListView -> new MovieListCell());
     }
 }

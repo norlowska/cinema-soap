@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Screen {
 
-    @XmlElementRef(name = "screenName", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
+    @XmlElementRef(name = "screenName", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
     protected JAXBElement<String> screenName;
     protected Integer screenSize;
 
@@ -60,7 +60,7 @@ public class Screen {
      *     
      */
     public void setScreenName(JAXBElement<String> value) {
-        this.screenName = ((JAXBElement<String> ) value);
+        this.screenName = value;
     }
 
     /**

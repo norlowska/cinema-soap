@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="characters" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}ArrayOfCharacter" minOccurs="0"/>
  *         &lt;element name="crew" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}ArrayOfCrewMember" minOccurs="0"/>
  *         &lt;element name="desc" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="imageData" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         &lt;element name="movieID" type="{http://schemas.microsoft.com/2003/10/Serialization/}guid" minOccurs="0"/>
  *         &lt;element name="screenings" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}ArrayOfScreening" minOccurs="0"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -37,22 +38,25 @@ import javax.xml.bind.annotation.XmlType;
     "characters",
     "crew",
     "desc",
+    "imageData",
     "movieID",
     "screenings",
     "title"
 })
 public class Movie {
 
-    @XmlElementRef(name = "characters", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
+    @XmlElementRef(name = "characters", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
     protected JAXBElement<ArrayOfCharacter> characters;
-    @XmlElementRef(name = "crew", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
+    @XmlElementRef(name = "crew", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
     protected JAXBElement<ArrayOfCrewMember> crew;
-    @XmlElementRef(name = "desc", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
+    @XmlElementRef(name = "desc", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
     protected JAXBElement<String> desc;
+    @XmlElementRef(name = "imageData", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    protected JAXBElement<byte[]> imageData;
     protected String movieID;
-    @XmlElementRef(name = "screenings", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
+    @XmlElementRef(name = "screenings", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
     protected JAXBElement<ArrayOfScreening> screenings;
-    @XmlElementRef(name = "title", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
+    @XmlElementRef(name = "title", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
     protected JAXBElement<String> title;
 
     /**
@@ -76,7 +80,7 @@ public class Movie {
      *     
      */
     public void setCharacters(JAXBElement<ArrayOfCharacter> value) {
-        this.characters = ((JAXBElement<ArrayOfCharacter> ) value);
+        this.characters = value;
     }
 
     /**
@@ -100,7 +104,7 @@ public class Movie {
      *     
      */
     public void setCrew(JAXBElement<ArrayOfCrewMember> value) {
-        this.crew = ((JAXBElement<ArrayOfCrewMember> ) value);
+        this.crew = value;
     }
 
     /**
@@ -124,7 +128,31 @@ public class Movie {
      *     
      */
     public void setDesc(JAXBElement<String> value) {
-        this.desc = ((JAXBElement<String> ) value);
+        this.desc = value;
+    }
+
+    /**
+     * Gets the value of the imageData property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link byte[]}{@code >}
+     *     
+     */
+    public JAXBElement<byte[]> getImageData() {
+        return imageData;
+    }
+
+    /**
+     * Sets the value of the imageData property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link byte[]}{@code >}
+     *     
+     */
+    public void setImageData(JAXBElement<byte[]> value) {
+        this.imageData = value;
     }
 
     /**
@@ -172,7 +200,7 @@ public class Movie {
      *     
      */
     public void setScreenings(JAXBElement<ArrayOfScreening> value) {
-        this.screenings = ((JAXBElement<ArrayOfScreening> ) value);
+        this.screenings = value;
     }
 
     /**
@@ -196,7 +224,7 @@ public class Movie {
      *     
      */
     public void setTitle(JAXBElement<String> value) {
-        this.title = ((JAXBElement<String> ) value);
+        this.title = value;
     }
 
 }

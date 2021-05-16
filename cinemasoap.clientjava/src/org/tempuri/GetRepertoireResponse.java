@@ -36,7 +36,7 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfMovie;
 @XmlRootElement(name = "GetRepertoireResponse")
 public class GetRepertoireResponse {
 
-    @XmlElementRef(name = "GetRepertoireResult", namespace = "http://tempuri.org/", type = JAXBElement.class)
+    @XmlElementRef(name = "GetRepertoireResult", namespace = "http://tempuri.org/", type = JAXBElement.class, required = false)
     protected JAXBElement<ArrayOfMovie> getRepertoireResult;
 
     /**
@@ -60,7 +60,7 @@ public class GetRepertoireResponse {
      *     
      */
     public void setGetRepertoireResult(JAXBElement<ArrayOfMovie> value) {
-        this.getRepertoireResult = ((JAXBElement<ArrayOfMovie> ) value);
+        this.getRepertoireResult = value;
     }
 
 }

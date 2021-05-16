@@ -12,7 +12,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Repertoire.fxml"));
         primaryStage.setTitle("Cinema SOAP");
-        primaryStage.setScene(new Scene(root, 810, 513));
+        Scene sc = new Scene(root, 810, 513);
+        sc.getStylesheets().add(this.getClass().getResource("styles.css").toExternalForm());
+        primaryStage.setScene(sc);
         primaryStage.show();
     }
 

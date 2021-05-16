@@ -36,7 +36,7 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfReservation;
 @XmlRootElement(name = "GetReservationListResponse")
 public class GetReservationListResponse {
 
-    @XmlElementRef(name = "GetReservationListResult", namespace = "http://tempuri.org/", type = JAXBElement.class)
+    @XmlElementRef(name = "GetReservationListResult", namespace = "http://tempuri.org/", type = JAXBElement.class, required = false)
     protected JAXBElement<ArrayOfReservation> getReservationListResult;
 
     /**
@@ -60,7 +60,7 @@ public class GetReservationListResponse {
      *     
      */
     public void setGetReservationListResult(JAXBElement<ArrayOfReservation> value) {
-        this.getReservationListResult = ((JAXBElement<ArrayOfReservation> ) value);
+        this.getReservationListResult = value;
     }
 
 }
