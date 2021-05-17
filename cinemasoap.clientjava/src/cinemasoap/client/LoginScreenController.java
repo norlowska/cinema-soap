@@ -35,20 +35,19 @@ public class LoginScreenController implements Initializable {
 
     public CinemaSoap cinemaSoap;
     public ICinemaService service;
+    public String[] loginData;
 
     public LoginScreenController() {
         cinemaSoap = new CinemaSoap();
         service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
     }
 
-    private String[] getLoginData()
+    private void getLoginData()
     {
-        String[] loginData = new String[2];
+        loginData = new String[2];
 
         loginData[0] = this.emailTextBox.getText();
         loginData[1] = this.passwordTextBox.getText();
-
-        return loginData;
     }
 
     @Override
@@ -56,7 +55,7 @@ public class LoginScreenController implements Initializable {
     loginButton.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-
+            getLoginData();
         }
     });
     }

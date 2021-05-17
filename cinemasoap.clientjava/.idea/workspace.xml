@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreen.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/ReservationScreen.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/ReservationScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/SeatCellView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/SeatCellViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/MovieListCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieListCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/Repertoire.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/Repertoire.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cinemasoap.service/cinemasoap.service/Models/Movie.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../cinemasoap.service/cinemasoap.service/Models/Movie.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/LoginScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/LoginScreenController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,9 +65,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="FxmlFile" />
         <option value="Class" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -352,7 +357,7 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/cinemasoap_clientjava$Main.ic" NAME="Main Coverage Results" MODIFIED="1621164792081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/cinemasoap_clientjava$Main.ic" NAME="Main Coverage Results" MODIFIED="1621245444245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>sample.*</FILTER>
     </SUITE>
   </component>
