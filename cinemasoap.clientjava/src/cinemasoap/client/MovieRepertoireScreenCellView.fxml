@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="40.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinemasoap.client.MovieRepertoireScreenCellViewController">
+<AnchorPane fx:id="screeningCell" prefHeight="40.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="11.0" layoutY="7.0" text="Time:">
          <font>

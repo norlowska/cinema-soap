@@ -10,41 +10,35 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Movie;
+import org.datacontract.schemas._2004._07.cinemasoap_service.Screening;
 import org.tempuri.CinemaSoap;
 import org.tempuri.ICinemaService;
 
 import javax.xml.ws.soap.AddressingFeature;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MovieRepertoireScreenController implements Initializable {
 
-
-    private ObservableList<Movie> movies;
+    private ObservableList<Screening> screenings;
     private ICinemaService service;
 
     @FXML
     private ListView seancesList;
 
-    public MovieRepertoireScreenController()
+    public MovieRepertoireScreenController(List<Screening> screeningsList)
     {
-
+        CinemaSoap cinemaSoap = new CinemaSoap();
+        service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
+        screenings = FXCollections.observableArrayList();
+        screenings.addAll(screeningsList);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        seancesList.setItems(movies);
+        seancesList.setItems(screenings);
         seancesList.setCellFactory(movieListView -> new MovieRepertoireScreenCellViewController());
-    }
-
-    //metoda nadpisująca okno
-    public void InitData(String date)
-    {
-        CinemaSoap cinemaSoap = new CinemaSoap();
-        service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
-
-        movies = FXCollections.observableArrayList();
-        movies.addAll(service.getRepertoire(date).getMovie());
     }
 }
 

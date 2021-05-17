@@ -98,11 +98,8 @@ public class RepertoireController implements Initializable {
                     // tutaj dodać wywołanie nowego okna seansów
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("MovieRepertoireScreen.fxml"));
+                        loader.setController(new MovieRepertoireScreenController(currentItemSelected.getScreenings().getValue().getScreening()));
                         Scene sc = new Scene(loader.load(), 810, 513);
-
-                        MovieRepertoireScreenController controller = loader.getController();
-                        //Trzeba dodać metodę chodzącą po filmach czy coś ten deseń
-                        controller.InitData(((ToggleButton) dateToggle.getSelectedToggle()).getText());
 
                         Stage stage = new Stage();
                         stage.setScene(sc);
@@ -111,7 +108,7 @@ public class RepertoireController implements Initializable {
                     }
                     catch (Exception e)
                     {
-
+                        e.printStackTrace();
                     }
                 }
             }

@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import org.datacontract.schemas._2004._07.cinemasoap_service.*;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Character;
 
@@ -24,8 +25,9 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
     private Movie movie;
 
     @FXML
+    private AnchorPane screeningCell;
+    @FXML
     private Button bookButton;
-
     @FXML
     private Label timeLabel;
 
@@ -34,9 +36,6 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
     {
         //tutaj dodać generowanie nowej rezerwacji.
         FXMLLoader scene = new FXMLLoader(getClass().getResource("ReservationScreen.fxml"));
-
-
-
     }
 
     @Override
@@ -50,7 +49,7 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
         } else {
             if(mLLoader == null) {
                 try {
-                    mLLoader = new FXMLLoader(getClass().getResource("MovieRepertoireCellView.fxml"));
+                    mLLoader = new FXMLLoader(getClass().getResource("MovieRepertoireScreenCellView.fxml"));
                     mLLoader.setController(this);
                     mLLoader.load();
                 } catch (IOException ex) {
@@ -59,7 +58,7 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
             }
             pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, !isSelected());
             timeLabel.setText("Time: " + screening.getFullDate());
-            movie = screening.getMovie().getValue();
+            setGraphic(screeningCell);
         }
     }
 }
