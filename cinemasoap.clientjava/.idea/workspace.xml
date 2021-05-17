@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added new views. Controllers implementation in progress">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added some content to controllers(hope to work fine)&#10;ReservationScreenController and SeatsCellController are in progress. Need to create method to add new window for reservation. There is possibility that MovieRepertoireScreen.fxml will show wrong data bcs of not accurate method- check MovieRepertoireScreenController line 41 method InitData().">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/ReservationScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/ReservationScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/ReservationScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/ReservationScreenController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621249569681</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added some content to controllers(hope to work fine)&#10;ReservationScreenController and SeatsCellController are in progress. Need to create method to add new window for reservation. There is possibility that MovieRepertoireScreen.fxml will show wrong data bcs of not accurate method- check MovieRepertoireScreenController line 41 method InitData().">
+      <created>1621256617972</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1621256617972</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -309,40 +311,51 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="Added Login Screen and Controller (there is private method to get data from textBoxes)" />
     <MESSAGE value="Added new views. Controllers implementation in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new views. Controllers implementation in progress" />
+    <MESSAGE value="Added some content to controllers(hope to work fine)&#10;ReservationScreenController and SeatsCellController are in progress. Need to create method to add new window for reservation. There is possibility that MovieRepertoireScreen.fxml will show wrong data bcs of not accurate method- check MovieRepertoireScreenController line 41 method InitData()." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some content to controllers(hope to work fine)&#10;ReservationScreenController and SeatsCellController are in progress. Need to create method to add new window for reservation. There is possibility that MovieRepertoireScreen.fxml will show wrong data bcs of not accurate method- check MovieRepertoireScreenController line 41 method InitData()." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieListCell.java</url>
           <line>48</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieListCell.java</url>
           <line>39</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieListCell.java</url>
           <line>74</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieListCell.java</url>
           <line>55</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieListCell.java</url>
           <line>63</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieListCell.java</url>
           <line>70</line>
           <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java</url>
@@ -363,7 +376,7 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/cinemasoap_clientjava$Main.ic" NAME="Main Coverage Results" MODIFIED="1621245444245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/cinemasoap_clientjava$Main.ic" NAME="Main Coverage Results" MODIFIED="1621257699681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>sample.*</FILTER>
     </SUITE>
   </component>

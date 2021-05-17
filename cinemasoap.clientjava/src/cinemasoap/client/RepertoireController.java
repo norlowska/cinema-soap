@@ -102,7 +102,7 @@ public class RepertoireController implements Initializable {
 
                         MovieRepertoireScreenController controller = loader.getController();
                         //Trzeba dodać metodę chodzącą po filmach czy coś ten deseń
-                        controller.InitData(dateToggle.toString());
+                        controller.InitData(((ToggleButton) dateToggle.getSelectedToggle()).getText());
 
                         Stage stage = new Stage();
                         stage.setScene(sc);
