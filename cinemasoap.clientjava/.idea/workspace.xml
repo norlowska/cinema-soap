@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Fixed some classes. Added code to ReservationScreenController, ReservationCellController,&#10; AccountScreenController. There is problem with transmission of screening paramtere to ReservationScreenController which cause NullPointerException. AccountScreenController need user authentication to work properly.">
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/AccountScreen.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/AccountScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/ReservationCell.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cinemasoap/client/ReservationCellController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/Repertoire.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/Repertoire.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/ReservationScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/ReservationScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/SeatCellView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/SeatCellViewController.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +80,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -262,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621256617972</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="HotFix- Fixed MovieRepertoireScreenController method- now after double click on movie, program won't crash.">
+      <created>1621257932251</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1621257932251</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -316,7 +330,9 @@
     <MESSAGE value="Added Login Screen and Controller (there is private method to get data from textBoxes)" />
     <MESSAGE value="Added new views. Controllers implementation in progress" />
     <MESSAGE value="Added some content to controllers(hope to work fine)&#10;ReservationScreenController and SeatsCellController are in progress. Need to create method to add new window for reservation. There is possibility that MovieRepertoireScreen.fxml will show wrong data bcs of not accurate method- check MovieRepertoireScreenController line 41 method InitData()." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some content to controllers(hope to work fine)&#10;ReservationScreenController and SeatsCellController are in progress. Need to create method to add new window for reservation. There is possibility that MovieRepertoireScreen.fxml will show wrong data bcs of not accurate method- check MovieRepertoireScreenController line 41 method InitData()." />
+    <MESSAGE value="HotFix- Fixed MovieRepertoireScreenController method- now after double click on movie, program won't crash." />
+    <MESSAGE value="Fixed some classes. Added code to ReservationScreenController, ReservationCellController,&#10; AccountScreenController. There is problem with transmission of screening paramtere to ReservationScreenController which cause NullPointerException. AccountScreenController need user authentication to work properly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some classes. Added code to ReservationScreenController, ReservationCellController,&#10; AccountScreenController. There is problem with transmission of screening paramtere to ReservationScreenController which cause NullPointerException. AccountScreenController need user authentication to work properly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -343,33 +359,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java</url>
-          <line>110</line>
+          <line>127</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java</url>
-          <line>59</line>
+          <line>60</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java</url>
-          <line>58</line>
+          <line>59</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java</url>
-          <line>60</line>
+          <line>82</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java</url>
-          <line>46</line>
+          <line>47</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java</url>
-          <line>49</line>
+          <line>50</line>
           <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java</url>
@@ -377,6 +403,10 @@
           <properties field="dateToggle" class="cinemasoap.client.RepertoireController" />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="72" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -390,7 +420,7 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/cinemasoap_clientjava$Main.ic" NAME="Main Coverage Results" MODIFIED="1621164792081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/cinemasoap_clientjava$Main.ic" NAME="Main Coverage Results" MODIFIED="1621279804850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>sample.*</FILTER>
     </SUITE>
   </component>
