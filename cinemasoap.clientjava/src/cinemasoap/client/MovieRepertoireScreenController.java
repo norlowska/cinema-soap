@@ -26,7 +26,19 @@ public class MovieRepertoireScreenController implements Initializable {
     @FXML
     private ListView seancesList;
 
-    public MovieRepertoireScreenController(String date)
+    public MovieRepertoireScreenController()
+    {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        seancesList.setItems(movies);
+        seancesList.setCellFactory(movieListView -> new MovieRepertoireScreenCellViewController());
+    }
+
+    //metoda nadpisująca okno
+    public void InitData(String date)
     {
         CinemaSoap cinemaSoap = new CinemaSoap();
         service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
@@ -34,15 +46,5 @@ public class MovieRepertoireScreenController implements Initializable {
         movies = FXCollections.observableArrayList();
         movies.addAll(service.getRepertoire(date).getMovie());
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        seancesList.setItems(movies);
-        seancesList.setCellFactory(movieListView -> new MovieRepertoireScreenCellViewController());
-
-
-
-    }
-
 }
 

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -20,6 +21,7 @@ import java.util.List;
 public class MovieRepertoireScreenCellViewController extends ListCell<Screening> {
 
     private FXMLLoader mLLoader;
+    private Movie movie;
 
     @FXML
     private Button bookButton;
@@ -30,7 +32,11 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
     @FXML
     public void book(ActionEvent evt)
     {
-        //tutaj dodać generowanie nowej sceny rezerwacji.
+        //tutaj dodać generowanie nowej rezerwacji.
+        FXMLLoader scene = new FXMLLoader(getClass().getResource("ReservationScreen.fxml"));
+
+
+
     }
 
     @Override
@@ -53,6 +59,7 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
             }
             pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, !isSelected());
             timeLabel.setText("Time: " + screening.getFullDate());
+            movie = screening.getMovie().getValue();
         }
     }
 }

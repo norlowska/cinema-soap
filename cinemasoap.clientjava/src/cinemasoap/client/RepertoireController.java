@@ -13,9 +13,15 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Movie;
 import org.tempuri.CinemaSoap;
 import org.tempuri.ICinemaService;
@@ -42,6 +48,7 @@ public class RepertoireController implements Initializable {
     private ListView repertoireList;
     @FXML
     private ToggleGroup dateToggle;
+
 
     public RepertoireController() {
 
@@ -74,13 +81,41 @@ public class RepertoireController implements Initializable {
         dateToggle.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                if(dateToggle.getSelectedToggle() != null) {
-                    String dateStr = ((ToggleButton)dateToggle.getSelectedToggle()).getText();
+                if (dateToggle.getSelectedToggle() != null) {
+                    String dateStr = ((ToggleButton) dateToggle.getSelectedToggle()).getText();
                     movies.remove(0, movies.size());
                     movies.addAll(service.getRepertoire(dateStr).getMovie());
                     System.out.println(movies);
                 }
             }
         });
+
+        repertoireList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent click) {
+                if (click.getClickCount() == 2) {
+                    Movie currentItemSelected = (Movie) repertoireList.getSelectionModel().getSelectedItem();
+                    // tutaj dodać wywołanie nowego okna seansów
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("MovieRepertoireScreen.fxml"));
+                        Scene sc = new Scene(loader.load(), 810, 513);
+
+                        MovieRepertoireScreenController controller = loader.getController();
+                        //Trzeba dodać metodę chodzącą po filmach czy coś ten deseń
+                        controller.InitData(dateToggle.toString());
+
+                        Stage stage = new Stage();
+                        stage.setScene(sc);
+
+                        stage.show();
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+        });
+
     }
 }

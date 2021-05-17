@@ -20,13 +20,13 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <ListView layoutX="14.0" layoutY="257.0" prefHeight="129.0" prefWidth="200.0" />
+      <ListView fx:id="seatsView" layoutX="14.0" layoutY="257.0" prefHeight="129.0" prefWidth="200.0" />
       <Label layoutX="53.0" layoutY="230.0" text="Available Seats">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="210.0" fitWidth="200.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="posterView" fitHeight="210.0" fitWidth="200.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="infoLabel" alignment="TOP_LEFT" layoutX="236.0" layoutY="14.0" prefHeight="251.0" prefWidth="350.0" text="Label">
          <font>
             <Font name="System Bold" size="12.0" />
