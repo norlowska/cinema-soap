@@ -41,7 +41,7 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfSeat;
 public class BookScreening {
 
     protected String screeningID;
-    @XmlElementRef(name = "chosenSeats", namespace = "http://tempuri.org/", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "chosenSeats", namespace = "http://tempuri.org/", type = JAXBElement.class)
     protected JAXBElement<ArrayOfSeat> chosenSeats;
     protected String userID;
 
@@ -90,7 +90,7 @@ public class BookScreening {
      *     
      */
     public void setChosenSeats(JAXBElement<ArrayOfSeat> value) {
-        this.chosenSeats = value;
+        this.chosenSeats = ((JAXBElement<ArrayOfSeat> ) value);
     }
 
     /**

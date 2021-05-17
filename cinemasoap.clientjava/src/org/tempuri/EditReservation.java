@@ -36,7 +36,7 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.EditReservationRequ
 @XmlRootElement(name = "EditReservation")
 public class EditReservation {
 
-    @XmlElementRef(name = "newReservation", namespace = "http://tempuri.org/", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "newReservation", namespace = "http://tempuri.org/", type = JAXBElement.class)
     protected JAXBElement<EditReservationRequestDTO> newReservation;
 
     /**
@@ -60,7 +60,7 @@ public class EditReservation {
      *     
      */
     public void setNewReservation(JAXBElement<EditReservationRequestDTO> value) {
-        this.newReservation = value;
+        this.newReservation = ((JAXBElement<EditReservationRequestDTO> ) value);
     }
 
 }

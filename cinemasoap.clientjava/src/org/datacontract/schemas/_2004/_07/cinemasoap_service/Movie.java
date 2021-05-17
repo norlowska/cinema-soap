@@ -45,18 +45,18 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Movie {
 
-    @XmlElementRef(name = "characters", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "characters", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<ArrayOfCharacter> characters;
-    @XmlElementRef(name = "crew", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "crew", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<ArrayOfCrewMember> crew;
-    @XmlElementRef(name = "desc", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "desc", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<String> desc;
-    @XmlElementRef(name = "imageData", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "imageData", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<byte[]> imageData;
     protected String movieID;
-    @XmlElementRef(name = "screenings", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "screenings", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<ArrayOfScreening> screenings;
-    @XmlElementRef(name = "title", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "title", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<String> title;
 
     /**
@@ -80,7 +80,7 @@ public class Movie {
      *     
      */
     public void setCharacters(JAXBElement<ArrayOfCharacter> value) {
-        this.characters = value;
+        this.characters = ((JAXBElement<ArrayOfCharacter> ) value);
     }
 
     /**
@@ -104,7 +104,7 @@ public class Movie {
      *     
      */
     public void setCrew(JAXBElement<ArrayOfCrewMember> value) {
-        this.crew = value;
+        this.crew = ((JAXBElement<ArrayOfCrewMember> ) value);
     }
 
     /**
@@ -128,7 +128,7 @@ public class Movie {
      *     
      */
     public void setDesc(JAXBElement<String> value) {
-        this.desc = value;
+        this.desc = ((JAXBElement<String> ) value);
     }
 
     /**
@@ -152,7 +152,7 @@ public class Movie {
      *     
      */
     public void setImageData(JAXBElement<byte[]> value) {
-        this.imageData = value;
+        this.imageData = ((JAXBElement<byte[]> ) value);
     }
 
     /**
@@ -200,7 +200,7 @@ public class Movie {
      *     
      */
     public void setScreenings(JAXBElement<ArrayOfScreening> value) {
-        this.screenings = value;
+        this.screenings = ((JAXBElement<ArrayOfScreening> ) value);
     }
 
     /**
@@ -224,7 +224,7 @@ public class Movie {
      *     
      */
     public void setTitle(JAXBElement<String> value) {
-        this.title = value;
+        this.title = ((JAXBElement<String> ) value);
     }
 
 }

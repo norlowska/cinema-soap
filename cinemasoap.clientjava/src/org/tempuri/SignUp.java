@@ -36,7 +36,7 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.User;
 @XmlRootElement(name = "SignUp")
 public class SignUp {
 
-    @XmlElementRef(name = "user", namespace = "http://tempuri.org/", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "user", namespace = "http://tempuri.org/", type = JAXBElement.class)
     protected JAXBElement<User> user;
 
     /**
@@ -60,7 +60,7 @@ public class SignUp {
      *     
      */
     public void setUser(JAXBElement<User> value) {
-        this.user = value;
+        this.user = ((JAXBElement<User> ) value);
     }
 
 }

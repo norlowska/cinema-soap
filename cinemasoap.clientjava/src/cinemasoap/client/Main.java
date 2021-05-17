@@ -10,12 +10,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Repertoire.fxml"));
-        primaryStage.setTitle("Cinema SOAP");
-        Scene sc = new Scene(root, 810, 513);
-        sc.getStylesheets().add(this.getClass().getResource("styles.css").toExternalForm());
-        primaryStage.setScene(sc);
-        primaryStage.show();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+            primaryStage.setTitle("Logowanie | Cinema SOAP");
+            Scene sc = new Scene(root, 600, 400);
+            sc.getStylesheets().add(this.getClass().getResource("styles.css").toExternalForm());
+            primaryStage.setScene(sc);
+            primaryStage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -48,17 +48,17 @@ import javax.xml.bind.annotation.XmlType;
 public class User {
 
     protected Boolean deleted;
-    @XmlElementRef(name = "email", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "email", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<String> email;
-    @XmlElementRef(name = "firstName", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "firstName", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<String> firstName;
-    @XmlElementRef(name = "lastName", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "lastName", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<String> lastName;
-    @XmlElementRef(name = "password", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "password", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<String> password;
-    @XmlElementRef(name = "reservations", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "reservations", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<ArrayOfReservation> reservations;
-    @XmlElementRef(name = "secondName", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "secondName", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<String> secondName;
     protected String userID;
 
@@ -107,7 +107,7 @@ public class User {
      *     
      */
     public void setEmail(JAXBElement<String> value) {
-        this.email = value;
+        this.email = ((JAXBElement<String> ) value);
     }
 
     /**
@@ -131,7 +131,7 @@ public class User {
      *     
      */
     public void setFirstName(JAXBElement<String> value) {
-        this.firstName = value;
+        this.firstName = ((JAXBElement<String> ) value);
     }
 
     /**
@@ -155,7 +155,7 @@ public class User {
      *     
      */
     public void setLastName(JAXBElement<String> value) {
-        this.lastName = value;
+        this.lastName = ((JAXBElement<String> ) value);
     }
 
     /**
@@ -179,7 +179,7 @@ public class User {
      *     
      */
     public void setPassword(JAXBElement<String> value) {
-        this.password = value;
+        this.password = ((JAXBElement<String> ) value);
     }
 
     /**
@@ -203,7 +203,7 @@ public class User {
      *     
      */
     public void setReservations(JAXBElement<ArrayOfReservation> value) {
-        this.reservations = value;
+        this.reservations = ((JAXBElement<ArrayOfReservation> ) value);
     }
 
     /**
@@ -227,7 +227,7 @@ public class User {
      *     
      */
     public void setSecondName(JAXBElement<String> value) {
-        this.secondName = value;
+        this.secondName = ((JAXBElement<String> ) value);
     }
 
     /**

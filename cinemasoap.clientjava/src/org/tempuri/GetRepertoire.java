@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "GetRepertoire")
 public class GetRepertoire {
 
-    @XmlElementRef(name = "date", namespace = "http://tempuri.org/", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "date", namespace = "http://tempuri.org/", type = JAXBElement.class)
     protected JAXBElement<String> date;
 
     /**
@@ -59,7 +59,7 @@ public class GetRepertoire {
      *     
      */
     public void setDate(JAXBElement<String> value) {
-        this.date = value;
+        this.date = ((JAXBElement<String> ) value);
     }
 
 }
