@@ -23,9 +23,12 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Movie;
+import org.datacontract.schemas._2004._07.cinemasoap_service.ObjectFactory;
+import org.datacontract.schemas._2004._07.cinemasoap_service.Screening;
 import org.tempuri.CinemaSoap;
 import org.tempuri.ICinemaService;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.ws.soap.AddressingFeature;
 
 public class RepertoireController implements Initializable {
@@ -102,7 +105,6 @@ public class RepertoireController implements Initializable {
                     String dateStr = ((ToggleButton) dateToggle.getSelectedToggle()).getText();
                     movies.remove(0, movies.size());
                     movies.addAll(service.getRepertoire(dateStr).getMovie());
-                    System.out.println(movies);
                 }
             }
         });
@@ -115,11 +117,15 @@ public class RepertoireController implements Initializable {
                     // tutaj dodać wywołanie nowego okna seansów
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("MovieRepertoireScreen.fxml"));
-                        loader.setController(new MovieRepertoireScreenController(currentItemSelected.getScreenings().getValue().getScreening()));
+                        List<Screening> screenings = currentItemSelected.getScreenings().getValue().getScreening();
+                        ObjectFactory factory = new ObjectFactory();
+                        for(Screening s : screenings)
+                            s.setMovie(factory.createMovie(currentItemSelected));
+                        loader.setController(new MovieRepertoireScreenController(screenings));
                         Scene sc = new Scene(loader.load(), 810, 513);
-
                         Stage stage = new Stage();
                         stage.setScene(sc);
+                        stage.setTitle("Seanse \"" + screenings.get(0).getMovie().getValue().getTitle().getValue() + "\" | Cinema SOAP");
 
                         stage.show();
                     }

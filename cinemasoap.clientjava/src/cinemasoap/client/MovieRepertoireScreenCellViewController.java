@@ -36,9 +36,6 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
     @FXML
     public Label timeLabel;
 
-
-
-
     @Override
     protected void updateItem(Screening screening, boolean empty) {
         super.updateItem(screening, empty);
@@ -67,13 +64,13 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("ReservationScreen.fxml"));
                             loader.setController(new ReservationScreenController(screening));
                             Scene sc = new Scene(loader.load(), 810, 513);
-
                             Stage stage = new Stage();
                             stage.setScene(sc);
+                            stage.setTitle("Rezerwacja miejsc | Cinema SOAP");
 
                             stage.show();
                         } catch (Exception e) {
-                            System.out.println("No screening there");
+                            e.printStackTrace();
                         }
                     } else {
 

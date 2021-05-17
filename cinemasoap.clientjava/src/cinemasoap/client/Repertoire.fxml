@@ -31,6 +31,6 @@
             <Font name="System Bold" size="35.0" />
          </font>
       </Text>
-      <Button fx:id="accountButton" layoutX="719.0" layoutY="18.0" mnemonicParsing="false" text="My Account" onMouseClicked="#showMySeances" />
+      <Button fx:id="accountButton" layoutX="719.0" layoutY="18.0" mnemonicParsing="false" text="Moje kontro" onMouseClicked="#showMySeances" />
    </children>
 </Pane>

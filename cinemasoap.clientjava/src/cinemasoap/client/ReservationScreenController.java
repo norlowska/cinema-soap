@@ -17,6 +17,7 @@ import org.tempuri.ICinemaService;
 
 import javax.xml.ws.soap.AddressingFeature;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Observable;
 import java.util.ResourceBundle;
@@ -25,6 +26,8 @@ public class ReservationScreenController implements Initializable {
 
     private ICinemaService service;
     private ObservableList<Seat> seats;
+    private Screening screening;
+    private Movie movie;
 
     @FXML
     private Label infoLabel;
@@ -45,14 +48,8 @@ public class ReservationScreenController implements Initializable {
 
     public ReservationScreenController(Screening screening)
     {
-        if(screening != null) {
-            Movie movie = screening.getMovie().getValue();
-            CinemaSoap cinemaSoap = new CinemaSoap();
-            infoLabel.setText("Title: " + movie.getTitle().toString() + "\n Date" + screening.getFullDate().toString() + "\n Seats:");
-
-        }
-        else infoLabel.setText("error");
-
+        this.screening = screening;
+        this.movie = screening.getMovie().getValue();
         CinemaSoap cinemaSoap = new CinemaSoap();
         service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
         seats = FXCollections.observableArrayList();
@@ -61,8 +58,12 @@ public class ReservationScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        infoLabel.setText("Tytuł: " + movie.getTitle().getValue() +
+                "\n Data: " + formatter.format(screening.getFullDate().toGregorianCalendar().getTime()) +
+                "\n Miejsca: ");
         seatsView.setItems(seats);
-        seatsView.setCellFactory(movieListView -> new MovieListCell());
+       // seatsView.setCellFactory(movieListView -> new MovieListCell());
     }
 
 
