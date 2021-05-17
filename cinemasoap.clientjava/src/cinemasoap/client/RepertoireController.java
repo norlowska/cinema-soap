@@ -48,6 +48,23 @@ public class RepertoireController implements Initializable {
     private ListView repertoireList;
     @FXML
     private ToggleGroup dateToggle;
+    @FXML
+    private void showMySeances()
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountScreen.fxml"));
+            Scene sc = new Scene(loader.load(), 810, 513);
+
+            Stage stage = new Stage();
+            stage.setScene(sc);
+
+            stage.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 
     public RepertoireController() {

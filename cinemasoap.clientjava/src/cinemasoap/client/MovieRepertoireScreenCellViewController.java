@@ -2,41 +2,42 @@ package cinemasoap.client;
 
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.datacontract.schemas._2004._07.cinemasoap_service.*;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Character;
 
 import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 public class MovieRepertoireScreenCellViewController extends ListCell<Screening> {
 
     private FXMLLoader mLLoader;
-    private Movie movie;
+    private Screening thisScreening;
 
     @FXML
-    private AnchorPane screeningCell;
+    public AnchorPane screeningCell;
     @FXML
-    private Button bookButton;
+    public Button bookButton;
     @FXML
-    private Label timeLabel;
+    public Label timeLabel;
 
-    @FXML
-    public void book(ActionEvent evt)
-    {
-        //tutaj dodać generowanie nowej rezerwacji.
-        FXMLLoader scene = new FXMLLoader(getClass().getResource("ReservationScreen.fxml"));
-    }
+
+
 
     @Override
     protected void updateItem(Screening screening, boolean empty) {
@@ -58,7 +59,34 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
             }
             pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, !isSelected());
             timeLabel.setText("Time: " + screening.getFullDate());
+            bookButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            // Tutaj wywala nulla mimo warunku
+                public void handle(MouseEvent event) {
+                    if (screening != null) {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReservationScreen.fxml"));
+                            loader.setController(new ReservationScreenController(screening));
+                            Scene sc = new Scene(loader.load(), 810, 513);
+
+                            Stage stage = new Stage();
+                            stage.setScene(sc);
+
+                            stage.show();
+                        } catch (Exception e) {
+                            System.out.println("No screening there");
+                        }
+                    } else {
+
+                    }
+                }
+            });
             setGraphic(screeningCell);
         }
     }
+
+
+
+
+
+
 }
