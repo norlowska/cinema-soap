@@ -71,6 +71,8 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
                             stage.setTitle("Rezerwacja miejsc | Cinema SOAP");
 
                             stage.show();
+                            final Stage thisStage = (Stage)bookButton.getScene().getWindow();
+                            thisStage.close();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

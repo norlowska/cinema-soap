@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="Row" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="SeatID" type="{http://schemas.microsoft.com/2003/10/Serialization/}guid" minOccurs="0"/>
  *         &lt;element name="SeatNumber" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -30,12 +31,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Seat", propOrder = {
     "row",
+    "seatID",
     "seatNumber"
 })
 public class Seat {
 
     @XmlElement(name = "Row")
     protected Integer row;
+    @XmlElement(name = "SeatID")
+    protected String seatID;
     @XmlElement(name = "SeatNumber")
     protected Integer seatNumber;
 
@@ -61,6 +65,30 @@ public class Seat {
      */
     public void setRow(Integer value) {
         this.row = value;
+    }
+
+    /**
+     * Gets the value of the seatID property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSeatID() {
+        return seatID;
+    }
+
+    /**
+     * Sets the value of the seatID property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSeatID(String value) {
+        this.seatID = value;
     }
 
     /**

@@ -10,6 +10,7 @@ namespace cinemasoap.service.Models
     [DataContract]
     public class Seat
     {
+        [DataMember]
         public Guid SeatID;
         public Screen screen;
         [DataMember]

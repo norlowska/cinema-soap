@@ -9,7 +9,7 @@
    <children>
       <Button fx:id="bookButton" alignment="CENTER" layoutX="431.0" layoutY="354.0" mnemonicParsing="false" text="Rezerwuj" />
       <Button fx:id="cancelButton" alignment="CENTER" layoutX="513.0" layoutY="354.0" mnemonicParsing="false" text="Anuluj" />
-      <ListView fx:id="seatsView" layoutX="255.0" layoutY="51.0" prefHeight="288.0" prefWidth="308.0" />
+      <ListView fx:id="seatsView" layoutX="255.0" layoutY="51.0" prefHeight="288.0" prefWidth="220.0" />
       <Label layoutX="335.0" layoutY="15.0" text="Dostępne miejsca">
          <font>
             <Font name="System Bold" size="18.0" />

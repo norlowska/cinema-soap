@@ -14,9 +14,17 @@ public class Main extends Application {
     public static Pair<String, List<String>> getAuthHeader() {
         return authHeader;
     }
-
     public static void setAuthHeader(String key, List<String> value) {
         Main.authHeader = new Pair<String, List<String>>(key, value);
+    }
+
+
+    private  static String userEmail;
+    public static String getUserEmail() {
+        return userEmail;
+    }
+    public static void setUserEmail(String userEmail) {
+        Main.userEmail = userEmail;
     }
 
     @Override

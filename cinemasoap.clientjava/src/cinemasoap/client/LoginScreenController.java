@@ -78,6 +78,7 @@ public class LoginScreenController implements Initializable {
 
                     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                     service.getRepertoire(formatter.format(new Date())).getMovie();
+                    Main.setUserEmail(loginData[0]);
                 } catch (Exception ex) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("Nieprawidłowe dane logowania. Spróbuj ponownie.");

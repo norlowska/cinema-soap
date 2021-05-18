@@ -32,11 +32,11 @@ namespace cinemasoap.service
 
         [OperationContract]
         [UsernamePasswordAuthentication]
-        FileContentResponseDTO BookScreening(Guid screeningID, List<Seat> chosenSeats, Guid userID);
+        FileContentResponseDTO BookScreening(Guid screeningID, List<Seat> chosenSeats, string email);
 
         [OperationContract]
         [UsernamePasswordAuthentication]
-        List<Reservation> GetReservationList(Guid userId);
+        List<Reservation> GetReservationList(string email);
 
         [OperationContract]
         [UsernamePasswordAuthentication]

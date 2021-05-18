@@ -250,10 +250,6 @@ namespace cinemasoap.service.Models
             foreach (var movie in Movies)
             {
                 movie.screenings = Screenings.Where(item => item.movie != null && item.movie.movieID == movie.movieID).ToList();
-                foreach(var screening in movie.screenings)
-                {
-                    screening.movie = null;
-                }
             }
         }
 

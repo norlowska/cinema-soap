@@ -1,8 +1,10 @@
 
 package org.tempuri;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -17,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="userId" type="{http://schemas.microsoft.com/2003/10/Serialization/}guid" minOccurs="0"/>
+ *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +30,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "userId"
+    "email"
 })
 @XmlRootElement(name = "GetReservationList")
 public class GetReservationList {
 
-    protected String userId;
+    @XmlElementRef(name = "email", namespace = "http://tempuri.org/", type = JAXBElement.class)
+    protected JAXBElement<String> email;
 
     /**
-     * Gets the value of the userId property.
+     * Gets the value of the email property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
      *     
      */
-    public String getUserId() {
-        return userId;
+    public JAXBElement<String> getEmail() {
+        return email;
     }
 
     /**
-     * Sets the value of the userId property.
+     * Sets the value of the email property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
      *     
      */
-    public void setUserId(String value) {
-        this.userId = value;
+    public void setEmail(JAXBElement<String> value) {
+        this.email = ((JAXBElement<String> ) value);
     }
 
 }

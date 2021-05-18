@@ -47,19 +47,19 @@ public class ObjectFactory {
     private final static QName _MovieTitle_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "title");
     private final static QName _MovieImageData_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "imageData");
     private final static QName _MovieCharacters_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "characters");
-    private final static QName _ScreenScreenName_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "screenName");
+    private final static QName _EditReservationRequestDTOSeats_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", "seats");
+    private final static QName _FileContentResponseDTOContent_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", "Content");
+    private final static QName _FileContentResponseDTOMessage_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", "Message");
     private final static QName _ScreeningScreen_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "screen");
     private final static QName _ScreeningMovie_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "movie");
     private final static QName _ScreeningFreeSeats_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "FreeSeats");
-    private final static QName _EditReservationRequestDTOSeats_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", "seats");
     private final static QName _ActorSecondName_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "secondName");
     private final static QName _UserEmail_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "email");
     private final static QName _UserLastName_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "lastName");
     private final static QName _UserReservations_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "reservations");
     private final static QName _UserPassword_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "password");
     private final static QName _UserFirstName_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "firstName");
-    private final static QName _FileContentResponseDTOContent_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", "Content");
-    private final static QName _FileContentResponseDTOMessage_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", "Message");
+    private final static QName _ScreenScreenName_QNAME = new QName("http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", "screenName");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.datacontract.schemas._2004._07.cinemasoap_service
@@ -77,22 +77,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Screen }
-     * 
-     */
-    public Screen createScreen() {
-        return new Screen();
-    }
-
-    /**
-     * Create an instance of {@link Character }
-     * 
-     */
-    public Character createCharacter() {
-        return new Character();
-    }
-
-    /**
      * Create an instance of {@link ArrayOfReservation }
      * 
      */
@@ -101,11 +85,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ArrayOfMovie }
+     * Create an instance of {@link FileContentResponseDTO }
      * 
      */
-    public ArrayOfMovie createArrayOfMovie() {
-        return new ArrayOfMovie();
+    public FileContentResponseDTO createFileContentResponseDTO() {
+        return new FileContentResponseDTO();
+    }
+
+    /**
+     * Create an instance of {@link Screening }
+     * 
+     */
+    public Screening createScreening() {
+        return new Screening();
     }
 
     /**
@@ -117,14 +109,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Seat }
-     * 
-     */
-    public Seat createSeat() {
-        return new Seat();
-    }
-
-    /**
      * Create an instance of {@link CrewMember }
      * 
      */
@@ -133,19 +117,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayOfMovie }
+     * 
+     */
+    public ArrayOfMovie createArrayOfMovie() {
+        return new ArrayOfMovie();
+    }
+
+    /**
+     * Create an instance of {@link Seat }
+     * 
+     */
+    public Seat createSeat() {
+        return new Seat();
+    }
+
+    /**
      * Create an instance of {@link ArrayOfCrewMember }
      * 
      */
     public ArrayOfCrewMember createArrayOfCrewMember() {
         return new ArrayOfCrewMember();
-    }
-
-    /**
-     * Create an instance of {@link Screening }
-     * 
-     */
-    public Screening createScreening() {
-        return new Screening();
     }
 
     /**
@@ -181,19 +173,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FileContentResponseDTO }
-     * 
-     */
-    public FileContentResponseDTO createFileContentResponseDTO() {
-        return new FileContentResponseDTO();
-    }
-
-    /**
      * Create an instance of {@link ArrayOfScreening }
      * 
      */
     public ArrayOfScreening createArrayOfScreening() {
         return new ArrayOfScreening();
+    }
+
+    /**
+     * Create an instance of {@link Screen }
+     * 
+     */
+    public Screen createScreen() {
+        return new Screen();
+    }
+
+    /**
+     * Create an instance of {@link Character }
+     * 
+     */
+    public Character createCharacter() {
+        return new Character();
     }
 
     /**
@@ -412,12 +412,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ArrayOfSeat }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", name = "seats", scope = EditReservationRequestDTO.class)
+    public JAXBElement<ArrayOfSeat> createEditReservationRequestDTOSeats(ArrayOfSeat value) {
+        return new JAXBElement<ArrayOfSeat>(_EditReservationRequestDTOSeats_QNAME, ArrayOfSeat.class, EditReservationRequestDTO.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", name = "Content", scope = FileContentResponseDTO.class)
+    public JAXBElement<byte[]> createFileContentResponseDTOContent(byte[] value) {
+        return new JAXBElement<byte[]>(_FileContentResponseDTOContent_QNAME, byte[].class, FileContentResponseDTO.class, ((byte[]) value));
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", name = "screenName", scope = Screen.class)
-    public JAXBElement<String> createScreenScreenName(String value) {
-        return new JAXBElement<String>(_ScreenScreenName_QNAME, String.class, Screen.class, value);
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", name = "Message", scope = FileContentResponseDTO.class)
+    public JAXBElement<String> createFileContentResponseDTOMessage(String value) {
+        return new JAXBElement<String>(_FileContentResponseDTOMessage_QNAME, String.class, FileContentResponseDTO.class, value);
     }
 
     /**
@@ -445,15 +463,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", name = "FreeSeats", scope = Screening.class)
     public JAXBElement<ArrayOfSeat> createScreeningFreeSeats(ArrayOfSeat value) {
         return new JAXBElement<ArrayOfSeat>(_ScreeningFreeSeats_QNAME, ArrayOfSeat.class, Screening.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ArrayOfSeat }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", name = "seats", scope = EditReservationRequestDTO.class)
-    public JAXBElement<ArrayOfSeat> createEditReservationRequestDTOSeats(ArrayOfSeat value) {
-        return new JAXBElement<ArrayOfSeat>(_EditReservationRequestDTOSeats_QNAME, ArrayOfSeat.class, EditReservationRequestDTO.class, value);
     }
 
     /**
@@ -520,30 +529,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", name = "Content", scope = FileContentResponseDTO.class)
-    public JAXBElement<byte[]> createFileContentResponseDTOContent(byte[] value) {
-        return new JAXBElement<byte[]>(_FileContentResponseDTOContent_QNAME, byte[].class, FileContentResponseDTO.class, ((byte[]) value));
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO", name = "Message", scope = FileContentResponseDTO.class)
-    public JAXBElement<String> createFileContentResponseDTOMessage(String value) {
-        return new JAXBElement<String>(_FileContentResponseDTOMessage_QNAME, String.class, FileContentResponseDTO.class, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", name = "secondName", scope = CrewMember.class)
     public JAXBElement<String> createCrewMemberSecondName(String value) {
         return new JAXBElement<String>(_ActorSecondName_QNAME, String.class, CrewMember.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", name = "screenName", scope = Screen.class)
+    public JAXBElement<String> createScreenScreenName(String value) {
+        return new JAXBElement<String>(_ScreenScreenName_QNAME, String.class, Screen.class, value);
     }
 
 }

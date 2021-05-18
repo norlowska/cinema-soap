@@ -12,6 +12,7 @@ namespace cinemasoap.service.Models
     [DataContract]
     public class Screening
     {
+        [DataMember]
         public Guid screeningID;
         [DataMember]
         public Movie movie; //odwołanie do filmu
@@ -55,7 +56,7 @@ namespace cinemasoap.service.Models
             fullDate = date;
             this.date = getDate();
             time = getTime();
-            this.movie = movie;
+            this.movie = ExtensionMethods.DeepClone<Movie>(movie);
             this.screen = screen;
             deleted = false;
         }

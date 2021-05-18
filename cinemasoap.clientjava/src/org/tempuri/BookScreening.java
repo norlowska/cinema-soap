@@ -22,7 +22,7 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfSeat;
  *       &lt;sequence>
  *         &lt;element name="screeningID" type="{http://schemas.microsoft.com/2003/10/Serialization/}guid" minOccurs="0"/>
  *         &lt;element name="chosenSeats" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}ArrayOfSeat" minOccurs="0"/>
- *         &lt;element name="userID" type="{http://schemas.microsoft.com/2003/10/Serialization/}guid" minOccurs="0"/>
+ *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,7 +35,7 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfSeat;
 @XmlType(name = "", propOrder = {
     "screeningID",
     "chosenSeats",
-    "userID"
+    "email"
 })
 @XmlRootElement(name = "BookScreening")
 public class BookScreening {
@@ -43,7 +43,8 @@ public class BookScreening {
     protected String screeningID;
     @XmlElementRef(name = "chosenSeats", namespace = "http://tempuri.org/", type = JAXBElement.class)
     protected JAXBElement<ArrayOfSeat> chosenSeats;
-    protected String userID;
+    @XmlElementRef(name = "email", namespace = "http://tempuri.org/", type = JAXBElement.class)
+    protected JAXBElement<String> email;
 
     /**
      * Gets the value of the screeningID property.
@@ -94,27 +95,27 @@ public class BookScreening {
     }
 
     /**
-     * Gets the value of the userID property.
+     * Gets the value of the email property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
      *     
      */
-    public String getUserID() {
-        return userID;
+    public JAXBElement<String> getEmail() {
+        return email;
     }
 
     /**
-     * Sets the value of the userID property.
+     * Sets the value of the email property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
      *     
      */
-    public void setUserID(String value) {
-        this.userID = value;
+    public void setEmail(JAXBElement<String> value) {
+        this.email = ((JAXBElement<String> ) value);
     }
 
 }

@@ -24,9 +24,9 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.User;
  */
 @WebService(name = "ICinemaService", targetNamespace = "http://tempuri.org/")
 @XmlSeeAlso({
+    org.tempuri.ObjectFactory.class,
     com.microsoft.schemas._2003._10.serialization.ObjectFactory.class,
-    org.datacontract.schemas._2004._07.cinemasoap_service.ObjectFactory.class,
-    org.tempuri.ObjectFactory.class
+    org.datacontract.schemas._2004._07.cinemasoap_service.ObjectFactory.class
 })
 public interface ICinemaService {
 
@@ -89,8 +89,8 @@ public interface ICinemaService {
 
     /**
      * 
-     * @param userID
      * @param chosenSeats
+     * @param email
      * @param screeningID
      * @return
      *     returns org.datacontract.schemas._2004._07.cinemasoap_service.FileContentResponseDTO
@@ -104,12 +104,12 @@ public interface ICinemaService {
         String screeningID,
         @WebParam(name = "chosenSeats", targetNamespace = "http://tempuri.org/")
         ArrayOfSeat chosenSeats,
-        @WebParam(name = "userID", targetNamespace = "http://tempuri.org/")
-        String userID);
+        @WebParam(name = "email", targetNamespace = "http://tempuri.org/")
+        String email);
 
     /**
      * 
-     * @param userId
+     * @param email
      * @return
      *     returns org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfReservation
      */
@@ -118,8 +118,8 @@ public interface ICinemaService {
     @RequestWrapper(localName = "GetReservationList", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetReservationList")
     @ResponseWrapper(localName = "GetReservationListResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetReservationListResponse")
     public ArrayOfReservation getReservationList(
-        @WebParam(name = "userId", targetNamespace = "http://tempuri.org/")
-        String userId);
+        @WebParam(name = "email", targetNamespace = "http://tempuri.org/")
+        String email);
 
     /**
      * 

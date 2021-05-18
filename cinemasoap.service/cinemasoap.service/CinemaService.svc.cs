@@ -52,16 +52,16 @@ namespace cinemasoap.service
         /// </summary>
         /// <param name="screeningID">Identyfikator seansu</param>
         /// <param name="chosenSeats">Tablica wybranych miejsc </param>
-        /// <param name="userID"></param>
+        /// <param name="email">Adres email użytkownika</param>
         /// <returns></returns>
-        public FileContentResponseDTO BookScreening(Guid screeningID, List<Seat> chosenSeats, Guid userID)
+        public FileContentResponseDTO BookScreening(Guid screeningID, List<Seat> chosenSeats, string email)
         {
             try
             {
                 Screening screening = Screening.GetById(screeningID);
                 if (screening != null)
                 {
-                    Reservation newReservation = Reservation.bookScreening(screening, chosenSeats, userID);
+                    Reservation newReservation = Reservation.bookScreening(screening, chosenSeats, email);
                     if (newReservation == null) return new FileContentResponseDTO { Message = "Wybrane miejsca są zajęte." };
                     byte[] pdfBytes = newReservation.preparePDF();
                     if (pdfBytes == null) return new FileContentResponseDTO { Message = "Wystąpił błąd podczas generowania potwierdzenia rezerwacji." };
@@ -80,9 +80,9 @@ namespace cinemasoap.service
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public List<Reservation> GetReservationList(Guid id)
+        public List<Reservation> GetReservationList(string email)
         {
-            User user = User.GetById(id);
+            User user = User.GetByEmail(email);
             if (user == null) return null;
             return user.reservations;
         }

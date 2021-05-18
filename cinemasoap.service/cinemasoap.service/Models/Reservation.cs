@@ -70,14 +70,14 @@ namespace cinemasoap.service.Models
             return reservationID;
         }
 
-        public static Reservation bookScreening(Screening screening, List<Seat> chosenSeats, Guid userID) //w argumecnie/broszurze trzeba przekazać na jaki seans oraz jake siedzenia rezerwujesz oraz uzytkownika
+        public static Reservation bookScreening(Screening screening, List<Seat> chosenSeats, string email) //w argumecnie/broszurze trzeba przekazać na jaki seans oraz jake siedzenia rezerwujesz oraz uzytkownika
         {
             if (screening.checkSeats(chosenSeats)) return null;
             else
             {
                 CinemaContext cinemaContext = CinemaContext.GetContext();
                 Reservation newReservation = new Reservation();
-                User user = User.GetById(userID);
+                User user = User.GetByEmail(email);
                 newReservation.user = user;
                 newReservation.screening = screening;
                 chosenSeats.ForEach(item => item.SeatID = cinemaContext.Seats.Where(i => i.screen.screenID == screening.screen.screenID && i.Row == item.Row && i.SeatNumber == item.SeatNumber).FirstOrDefault().SeatID);
@@ -110,7 +110,7 @@ namespace cinemasoap.service.Models
             {
                 string filePath = Path.Combine(System.Configuration.ConfigurationManager.AppSettings["AppDataPath"], $"Reservation{this.reservationID}");
                 TextWriter writeFile = new StreamWriter(filePath + ".txt");
-
+                //if(this.screening.movie == null) this.screening.movie = Movie.GetById(this.screening.movieId)
                 writeFile.WriteLine("Reservation no. " + Guid.NewGuid());
                 writeFile.WriteLine();
                 writeFile.WriteLine("Movie: " + this.screening.movie.title);

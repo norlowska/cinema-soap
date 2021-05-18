@@ -25,6 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fullDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="movie" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}Movie" minOccurs="0"/>
  *         &lt;element name="screen" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}Screen" minOccurs="0"/>
+ *         &lt;element name="screeningID" type="{http://schemas.microsoft.com/2003/10/Serialization/}guid" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,7 +39,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "freeSeats",
     "fullDate",
     "movie",
-    "screen"
+    "screen",
+    "screeningID"
 })
 public class Screening {
 
@@ -51,6 +53,7 @@ public class Screening {
     protected JAXBElement<Movie> movie;
     @XmlElementRef(name = "screen", namespace = "http://schemas.datacontract.org/2004/07/cinemasoap.service.Models", type = JAXBElement.class)
     protected JAXBElement<Screen> screen;
+    protected String screeningID;
 
     /**
      * Gets the value of the freeSeats property.
@@ -146,6 +149,30 @@ public class Screening {
      */
     public void setScreen(JAXBElement<Screen> value) {
         this.screen = ((JAXBElement<Screen> ) value);
+    }
+
+    /**
+     * Gets the value of the screeningID property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getScreeningID() {
+        return screeningID;
+    }
+
+    /**
+     * Sets the value of the screeningID property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setScreeningID(String value) {
+        this.screeningID = value;
     }
 
 }
