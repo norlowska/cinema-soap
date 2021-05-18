@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -26,12 +27,13 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AccountScreenController implements Initializable {
-    public User user = this.user;
-    private ObservableList<Reservation> reservations;
+    public ObservableList<Reservation> reservations;
     private ICinemaService service;
 
     @FXML
     ListView reservationList;
+    @FXML
+    Button cancelBtn;
 
     public AccountScreenController()
     {
@@ -42,14 +44,20 @@ public class AccountScreenController implements Initializable {
         BindingProvider bindingProvider = ((BindingProvider) service);
         bindingProvider.getRequestContext().put(MessageContext.HTTP_REQUEST_HEADERS, requestHeaders);
         reservations = FXCollections.observableArrayList();
-        reservations.addAll(service.getReservationList(user.getUserID()).getReservation());
+        reservations.addAll(service.getReservationList(Main.getUserEmail()).getReservation());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         reservationList.setItems(reservations);
-        reservationList.setCellFactory(movieListView -> new MovieListCell());
+        reservationList.setCellFactory(reservationCell -> new ReservationCellController());
+        cancelBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                final Stage thisStage = (Stage)cancelBtn.getScene().getWindow();
+                thisStage.close();
+            }
+        });
     }
 
 

@@ -84,10 +84,4 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
             setGraphic(screeningCell);
         }
     }
-
-
-
-
-
-
 }

@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="reservationID" type="{http://schemas.microsoft.com/2003/10/Serialization/}guid" minOccurs="0"/>
  *         &lt;element name="screening" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}Screening"/>
  *         &lt;element name="seats" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}ArrayOfSeat"/>
  *         &lt;element name="user" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.Models}User"/>
@@ -30,18 +31,44 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Reservation", propOrder = {
+    "reservationID",
     "screening",
     "seats",
     "user"
 })
 public class Reservation {
 
+    protected String reservationID;
     @XmlElement(required = true, nillable = true)
     protected Screening screening;
     @XmlElement(required = true, nillable = true)
     protected ArrayOfSeat seats;
     @XmlElement(required = true, nillable = true)
     protected User user;
+
+    /**
+     * Gets the value of the reservationID property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getReservationID() {
+        return reservationID;
+    }
+
+    /**
+     * Sets the value of the reservationID property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setReservationID(String value) {
+        this.reservationID = value;
+    }
 
     /**
      * Gets the value of the screening property.

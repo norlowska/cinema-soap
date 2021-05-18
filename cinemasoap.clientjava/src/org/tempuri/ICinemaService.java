@@ -25,8 +25,8 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.User;
 @WebService(name = "ICinemaService", targetNamespace = "http://tempuri.org/")
 @XmlSeeAlso({
     org.tempuri.ObjectFactory.class,
-    com.microsoft.schemas._2003._10.serialization.ObjectFactory.class,
-    org.datacontract.schemas._2004._07.cinemasoap_service.ObjectFactory.class
+    org.datacontract.schemas._2004._07.cinemasoap_service.ObjectFactory.class,
+    com.microsoft.schemas._2003._10.serialization.ObjectFactory.class
 })
 public interface ICinemaService {
 

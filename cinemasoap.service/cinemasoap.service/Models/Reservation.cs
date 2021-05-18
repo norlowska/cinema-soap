@@ -17,6 +17,7 @@ namespace cinemasoap.service.Models
     [DataContract]
     public class Reservation
     {
+        [DataMember]
         public Guid reservationID;
         [DataMember(IsRequired = true)]
         public User user;

@@ -1,5 +1,6 @@
 package cinemasoap.client;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -51,6 +52,9 @@ public class RepertoireController implements Initializable {
     @FXML
     private ToggleGroup dateToggle;
     @FXML
+    private Button accountButton;
+
+    @FXML
     private void showMySeances()
     {
         try {
@@ -99,7 +103,6 @@ public class RepertoireController implements Initializable {
         repertoireList.setItems(movies);
         repertoireList.setCellFactory(movieListView -> new MovieListCell());
 
-
         dateToggle.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
@@ -135,6 +138,23 @@ public class RepertoireController implements Initializable {
                     {
                         e.printStackTrace();
                     }
+                }
+            }
+        });
+
+        accountButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountScreen.fxml"));
+                    loader.setController(new AccountScreenController());
+                    Scene sc = null;
+                    sc = new Scene(loader.load(), 600, 400);
+                    Stage stage = new Stage();
+                    stage.setScene(sc);
+                    stage.setTitle("Moje konto | Cinema SOAP");
+                    stage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });

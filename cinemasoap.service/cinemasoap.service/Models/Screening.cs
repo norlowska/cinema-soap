@@ -36,7 +36,7 @@ namespace cinemasoap.service.Models
         {
             get
             {
-                return screen.seats.Where(item => ReservedSeats.All(i => i.SeatID != item.SeatID)).ToList();
+                return screen.seats != null ? screen.seats.Where(item => ReservedSeats.All(i => i.SeatID != item.SeatID)).ToList() : null ;
             }
             set
             {

@@ -82,8 +82,16 @@ namespace cinemasoap.service
         /// <returns></returns>
         public List<Reservation> GetReservationList(string email)
         {
-            User user = User.GetByEmail(email);
+            User user = ExtensionMethods.DeepClone<User>(User.GetByEmail(email));
             if (user == null) return null;
+            foreach(var r in user.reservations)
+            {
+                //r.screening.FreeSeats = null;
+                r.screening.screen.seats = null;
+                r.user = null;
+                r.screening.movie.characters = null;
+                r.screening.movie.crew = null;
+            }
             return user.reservations;
         }
 
