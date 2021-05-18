@@ -193,21 +193,21 @@ namespace cinemasoap.service.Models
             return CinemaContext.GetContext().Reservations.Where(item => item.reservationID == id).FirstOrDefault();
         }
 
-        public static bool editReservation(EditReservationRequestDTO editedReservation)   //return 1 if function was successful and -1 when occurs any errors
+        public static Reservation editReservation(EditReservationRequestDTO editedReservation)   //return 1 if function was successful and -1 when occurs any errors
         {
             CinemaContext cinemaContext = CinemaContext.GetContext();
             Reservation originalReservation = cinemaContext.Reservations.Where(item => item.reservationID == editedReservation.reservationID).FirstOrDefault();
             if (originalReservation != null)
             {
-                if (originalReservation.screening.checkSeats(editedReservation.seats)) return false; //check if editedReservation's seats aren't already taken
+                if (originalReservation.screening.checkSeats(editedReservation.seats)) return null; //check if editedReservation's seats aren't already taken
                 else
                 {
                     editedReservation.seats.ForEach(item => item.SeatID = cinemaContext.Seats.Where(i => i.screen.screenID == originalReservation.screening.screen.screenID && i.Row == item.Row && i.SeatNumber == item.SeatNumber).FirstOrDefault().SeatID);
                     originalReservation.seats = editedReservation.seats;
-                    return true;
+                    return originalReservation;
                 }
             }
-            return false;
+            return null;
         }
     }
 }

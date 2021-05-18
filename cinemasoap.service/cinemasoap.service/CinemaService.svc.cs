@@ -42,9 +42,25 @@ namespace cinemasoap.service
             return false;
         }
 
-        public bool EditReservation(EditReservationRequestDTO newReservation)
-        {            
-            return Reservation.editReservation(newReservation);
+        public FileContentResponseDTO EditReservation(EditReservationRequestDTO newReservation)
+        {
+            try
+            {
+                Reservation reservation = Reservation.GetById(newReservation.reservationID);
+                if (reservation != null)
+                {
+                    reservation = Reservation.editReservation(newReservation);
+                    if (reservation == null) return new FileContentResponseDTO { Message = "Wybrane miejsca są zajęte." };
+                    byte[] pdfBytes = reservation.preparePDF();
+                    if (pdfBytes == null) return new FileContentResponseDTO { Message = "Wystąpił błąd podczas generowania potwierdzenia rezerwacji." };
+                    return new FileContentResponseDTO { Content = pdfBytes, Message = newReservation.reservationID.ToString() };
+                }
+                return new FileContentResponseDTO { Message = "Nie znaleziono seansu." };
+            }
+            catch (Exception ex)
+            {
+                return new FileContentResponseDTO { Message = "Wystąpił błąd podczas rezerwowania miejsc. " + ex.Message };
+            }
         }
 
         /// <summary>
@@ -87,7 +103,7 @@ namespace cinemasoap.service
             foreach(var r in user.reservations)
             {
                 //r.screening.FreeSeats = null;
-                r.screening.screen.seats = null;
+                //r.screening.screen.seats = null;
                 r.user = null;
                 r.screening.movie.characters = null;
                 r.screening.movie.crew = null;

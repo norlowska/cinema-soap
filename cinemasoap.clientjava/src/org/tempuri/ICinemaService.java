@@ -77,13 +77,13 @@ public interface ICinemaService {
      * 
      * @param newReservation
      * @return
-     *     returns java.lang.Boolean
+     *     returns org.datacontract.schemas._2004._07.cinemasoap_service.FileContentResponseDTO
      */
     @WebMethod(operationName = "EditReservation", action = "http://tempuri.org/ICinemaService/EditReservation")
     @WebResult(name = "EditReservationResult", targetNamespace = "http://tempuri.org/")
     @RequestWrapper(localName = "EditReservation", targetNamespace = "http://tempuri.org/", className = "org.tempuri.EditReservation")
     @ResponseWrapper(localName = "EditReservationResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.EditReservationResponse")
-    public Boolean editReservation(
+    public FileContentResponseDTO editReservation(
         @WebParam(name = "newReservation", targetNamespace = "http://tempuri.org/")
         EditReservationRequestDTO newReservation);
 

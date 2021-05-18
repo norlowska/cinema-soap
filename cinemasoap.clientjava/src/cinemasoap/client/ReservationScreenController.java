@@ -36,6 +36,9 @@ public class ReservationScreenController implements Initializable {
     private ICinemaService service;
     private ObservableList<Seat> seats;
     private Screening screening;
+    private Reservation reservation;
+    private boolean isEdit = false;
+
     private Movie movie;
 
     @FXML
@@ -55,10 +58,27 @@ public class ReservationScreenController implements Initializable {
 
 
 
-    public ReservationScreenController(Screening screening)
+    public ReservationScreenController(Screening screening, boolean isEdit)
     {
         this.screening = screening;
         this.movie = screening.getMovie().getValue();
+        this.isEdit = isEdit;
+        CinemaSoap cinemaSoap = new CinemaSoap();
+        service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
+        Map<String, List<String>> requestHeaders = new HashMap<>();
+        requestHeaders.put(Main.getAuthHeader().getKey(), Main.getAuthHeader().getValue());
+        BindingProvider bindingProvider = ((BindingProvider) service);
+        bindingProvider.getRequestContext().put(MessageContext.HTTP_REQUEST_HEADERS, requestHeaders);
+        seats = FXCollections.observableArrayList();
+        seats.addAll(screening.getFreeSeats().getValue().getSeat());
+    }
+
+    public ReservationScreenController(Reservation reservation, boolean isEdit)
+    {
+        this.reservation = reservation;
+        this.screening = reservation.getScreening();
+        this.movie = screening.getMovie().getValue();
+        this.isEdit = isEdit;
         CinemaSoap cinemaSoap = new CinemaSoap();
         service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
         Map<String, List<String>> requestHeaders = new HashMap<>();
@@ -95,14 +115,22 @@ public class ReservationScreenController implements Initializable {
                 ArrayOfSeat seats = factory.createArrayOfSeat();
                 for(Seat s : selectedIndices)
                     seats.getSeat().add(s);
-                FileContentResponseDTO res = service.bookScreening(screening.getScreeningID(), seats, Main.getUserEmail());
+                FileContentResponseDTO res;
+                if(isEdit) {
+                    EditReservationRequestDTO newReservation = factory.createEditReservationRequestDTO();
+                    newReservation.setSeats(factory.createEditReservationRequestDTOSeats(seats));
+                    newReservation.setReservationID(reservation.getReservationID());
+                    res = service.editReservation(newReservation);
+                }
+                else {
+                     res = service.bookScreening(screening.getScreeningID(), seats, Main.getUserEmail());
+                }
                 if(res.getMessage().getValue() != null && !res.getMessage().getValue().isEmpty() && res.getContent().getValue() == null) {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setContentText(res.getMessage().getValue());
                     errorAlert.show();
                     return;
                 }
-
                 final Stage thisStage = (Stage)cancelButton.getScene().getWindow();
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Zapisz potwierdzenie");

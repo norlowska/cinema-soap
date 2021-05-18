@@ -64,7 +64,7 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
                     if (screening != null) {
                         try {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("ReservationScreen.fxml"));
-                            loader.setController(new ReservationScreenController(screening));
+                            loader.setController(new ReservationScreenController(screening, false));
                             Scene sc = new Scene(loader.load(), 600, 400);
                             Stage stage = new Stage();
                             stage.setScene(sc);

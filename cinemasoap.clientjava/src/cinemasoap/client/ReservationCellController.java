@@ -1,5 +1,9 @@
 package cinemasoap.client;
 
+import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,6 +15,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Reservation;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Screening;
 import org.datacontract.schemas._2004._07.cinemasoap_service.Seat;
@@ -23,9 +28,8 @@ import javax.xml.ws.soap.AddressingFeature;
 import java.awt.*;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 public class ReservationCellController extends ListCell<Reservation> {
     private ICinemaService service;
@@ -89,7 +93,20 @@ public class ReservationCellController extends ListCell<Reservation> {
                 public void handle(MouseEvent event) {
                     if (reservation != null) {
                         try {
-
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReservationScreen.fxml"));
+                            loader.setController(new ReservationScreenController(reservation, true));
+                            Scene sc = new Scene(loader.load(), 600, 400);
+                            Stage stage = new Stage();
+                            stage.setScene(sc);
+                            stage.setOnHiding(new EventHandler<WindowEvent>() {
+                              @Override
+                              public void handle(WindowEvent event) {
+                                  getListView().getItems().removeAll();
+                                  getListView().setItems(FXCollections.observableArrayList(service.getReservationList(Main.getUserEmail()).getReservation()));
+                              }
+                          });
+                            stage.setTitle("Edycja rezerwacji | Cinema SOAP");
+                            stage.show();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

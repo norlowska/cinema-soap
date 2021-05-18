@@ -28,7 +28,7 @@ namespace cinemasoap.service
 
         [OperationContract]
         [UsernamePasswordAuthentication]
-        bool EditReservation(EditReservationRequestDTO newReservation);
+        FileContentResponseDTO EditReservation(EditReservationRequestDTO newReservation);
 
         [OperationContract]
         [UsernamePasswordAuthentication]

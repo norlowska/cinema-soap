@@ -1,11 +1,13 @@
 
 package org.tempuri;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import org.datacontract.schemas._2004._07.cinemasoap_service.FileContentResponseDTO;
 
 
 /**
@@ -18,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="EditReservationResult" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="EditReservationResult" type="{http://schemas.datacontract.org/2004/07/cinemasoap.service.SoapDTO}FileContentResponseDTO" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,18 +36,18 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "EditReservationResponse")
 public class EditReservationResponse {
 
-    @XmlElement(name = "EditReservationResult")
-    protected Boolean editReservationResult;
+    @XmlElementRef(name = "EditReservationResult", namespace = "http://tempuri.org/", type = JAXBElement.class)
+    protected JAXBElement<FileContentResponseDTO> editReservationResult;
 
     /**
      * Gets the value of the editReservationResult property.
      * 
      * @return
      *     possible object is
-     *     {@link Boolean }
+     *     {@link JAXBElement }{@code <}{@link FileContentResponseDTO }{@code >}
      *     
      */
-    public Boolean isEditReservationResult() {
+    public JAXBElement<FileContentResponseDTO> getEditReservationResult() {
         return editReservationResult;
     }
 
@@ -54,11 +56,11 @@ public class EditReservationResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link Boolean }
+     *     {@link JAXBElement }{@code <}{@link FileContentResponseDTO }{@code >}
      *     
      */
-    public void setEditReservationResult(Boolean value) {
-        this.editReservationResult = value;
+    public void setEditReservationResult(JAXBElement<FileContentResponseDTO> value) {
+        this.editReservationResult = ((JAXBElement<FileContentResponseDTO> ) value);
     }
 
 }
