@@ -15,6 +15,7 @@ namespace cinemasoap.service
     public interface ICinemaService
     {
         [OperationContract]
+        [UsernamePasswordAuthentication]
         [WebInvoke(ResponseFormat =WebMessageFormat.Json)]
         List<Movie> GetRepertoire(string date);
 

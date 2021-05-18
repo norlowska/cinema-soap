@@ -1,35 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="bookButton" alignment="CENTER" layoutX="418.0" layoutY="348.0" mnemonicParsing="false" text="Book">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="cancelButton" alignment="CENTER" layoutX="506.0" layoutY="348.0" mnemonicParsing="false" text="Cancel">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <ListView fx:id="seatsView" layoutX="14.0" layoutY="257.0" prefHeight="129.0" prefWidth="200.0" />
-      <Label layoutX="53.0" layoutY="230.0" text="Available Seats">
+      <Button fx:id="bookButton" alignment="CENTER" layoutX="431.0" layoutY="354.0" mnemonicParsing="false" text="Rezerwuj" />
+      <Button fx:id="cancelButton" alignment="CENTER" layoutX="513.0" layoutY="354.0" mnemonicParsing="false" text="Anuluj" />
+      <ListView fx:id="seatsView" layoutX="255.0" layoutY="51.0" prefHeight="288.0" prefWidth="308.0" />
+      <Label layoutX="335.0" layoutY="15.0" text="Dostępne miejsca">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ImageView fx:id="posterView" fitHeight="210.0" fitWidth="200.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="infoLabel" alignment="TOP_LEFT" layoutX="236.0" layoutY="14.0" prefHeight="251.0" prefWidth="350.0" text="Label">
+      <ImageView fx:id="posterView" fitHeight="200.0" fitWidth="145.0" layoutX="66.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="infoLabel" alignment="TOP_LEFT" layoutX="42.0" layoutY="51.0" prefHeight="85.0" prefWidth="194.0" text="Label">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font size="14.0" />
          </font>
       </Label>
    </children>

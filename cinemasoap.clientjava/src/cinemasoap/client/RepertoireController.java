@@ -4,10 +4,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -29,6 +26,8 @@ import org.tempuri.CinemaSoap;
 import org.tempuri.ICinemaService;
 
 import javax.xml.bind.JAXBElement;
+import javax.xml.ws.BindingProvider;
+import javax.xml.ws.handler.MessageContext;
 import javax.xml.ws.soap.AddressingFeature;
 
 public class RepertoireController implements Initializable {
@@ -82,7 +81,10 @@ public class RepertoireController implements Initializable {
         dates.add(DateTimeFormatter.ofPattern(pattern).format(LocalDateTime.from(now.toInstant().atZone(ZoneId.of("GMT+1"))).plusDays(4)));
         CinemaSoap cinemaSoap = new CinemaSoap();
         service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
-
+        Map<String, List<String>> requestHeaders = new HashMap<>();
+        requestHeaders.put(Main.getAuthHeader().getKey(), Main.getAuthHeader().getValue());
+        BindingProvider bindingProvider = ((BindingProvider) service);
+        bindingProvider.getRequestContext().put(MessageContext.HTTP_REQUEST_HEADERS, requestHeaders);
         movies = FXCollections.observableArrayList();
         movies.addAll(service.getRepertoire(dates.get(0)).getMovie());
     }
@@ -122,7 +124,7 @@ public class RepertoireController implements Initializable {
                         for(Screening s : screenings)
                             s.setMovie(factory.createMovie(currentItemSelected));
                         loader.setController(new MovieRepertoireScreenController(screenings));
-                        Scene sc = new Scene(loader.load(), 810, 513);
+                        Scene sc = new Scene(loader.load(), 600, 400);
                         Stage stage = new Stage();
                         stage.setScene(sc);
                         stage.setTitle("Seanse \"" + screenings.get(0).getMovie().getValue().getTitle().getValue() + "\" | Cinema SOAP");

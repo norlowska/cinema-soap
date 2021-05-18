@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="screeningCell" prefHeight="40.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
-      <Label layoutX="11.0" layoutY="7.0" text="Time:">
+      <Label layoutX="11.0" layoutY="7.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -17,7 +17,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="bookButton" layoutX="330.0" layoutY="5.0" mnemonicParsing="false" text="Book Repertoire">
+      <Button fx:id="bookButton" layoutX="330.0" layoutY="5.0" mnemonicParsing="false" text="Rezerwuj miejsca">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

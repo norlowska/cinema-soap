@@ -22,6 +22,7 @@ import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class MovieRepertoireScreenCellViewController extends ListCell<Screening> {
@@ -55,7 +56,8 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
                 }
             }
             pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, !isSelected());
-            timeLabel.setText("Time: " + screening.getFullDate());
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+            timeLabel.setText("Czas: " + formatter.format(screening.getFullDate().toGregorianCalendar().getTime()));
             bookButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             // Tutaj wywala nulla mimo warunku
                 public void handle(MouseEvent event) {
@@ -63,7 +65,7 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
                         try {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("ReservationScreen.fxml"));
                             loader.setController(new ReservationScreenController(screening));
-                            Scene sc = new Scene(loader.load(), 810, 513);
+                            Scene sc = new Scene(loader.load(), 600, 400);
                             Stage stage = new Stage();
                             stage.setScene(sc);
                             stage.setTitle("Rezerwacja miejsc | Cinema SOAP");
