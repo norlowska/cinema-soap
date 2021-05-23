@@ -77,6 +77,8 @@ namespace cinemasoap.service.Models
             foreach(var m in movies)
             {
                 m.screenings = m.screenings.Where(item => item.date == date.ToString("yyyy-MM-dd")).Select(x=>x.DeepClone()).ToList();
+                foreach (var s in m.screenings)
+                    s.movie = null;
             }
             return movies;
         }

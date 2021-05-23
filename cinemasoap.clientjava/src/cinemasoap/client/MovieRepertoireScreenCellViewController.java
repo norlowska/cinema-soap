@@ -44,6 +44,7 @@ public class MovieRepertoireScreenCellViewController extends ListCell<Screening>
         if(empty || screening == null)
         {
             setText(null);
+            setGraphic(null);
             pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, false);
         } else {
             if(mLLoader == null) {

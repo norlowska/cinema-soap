@@ -3,15 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added some content to controllers(hope to work fine)&#10;ReservationScreenController and SeatsCellController are in progress. Need to create method to add new window for reservation. There is possibility that MovieRepertoireScreen.fxml will show wrong data bcs of not accurate method- check MovieRepertoireScreenController line 41 method InitData().">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/AccountScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/AccountScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/MovieListCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieListCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/MovieRepertoireScreenCellViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/ReservationCell.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/ReservationCell.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/ReservationCellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/ReservationCellController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/ReservationScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/ReservationScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cinemasoap/client/SeatCellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cinemasoap/client/SeatCellController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/datacontract/schemas/_2004/_07/cinemasoap_service/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/datacontract/schemas/_2004/_07/cinemasoap_service/ObjectFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/tempuri/EditReservationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/tempuri/EditReservationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/tempuri/GetMoviePoster.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/tempuri/GetMoviePosterResponse.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/tempuri/ICinemaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/tempuri/ICinemaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/tempuri/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/tempuri/ObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/tempuri/SignUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/tempuri/SignUpResponse.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../cinemasoap.service/cinemasoap.service/ICinemaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../cinemasoap.service/cinemasoap.service/ICinemaService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cinemasoap.service/cinemasoap.service/Models/CinemaContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../cinemasoap.service/cinemasoap.service/Models/CinemaContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cinemasoap.service/cinemasoap.service/Models/Movie.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../cinemasoap.service/cinemasoap.service/Models/Movie.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,19 +357,9 @@
           <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/cinemasoap/client/ReservationCellController.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="104" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java</url>
           <line>156</line>
           <option name="timeStamp" value="106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/cinemasoap/client/ReservationCellController.java</url>
-          <line>103</line>
-          <option name="timeStamp" value="114" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/cinemasoap/client/RepertoireController.java</url>

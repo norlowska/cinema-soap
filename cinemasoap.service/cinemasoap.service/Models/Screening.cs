@@ -86,5 +86,16 @@ namespace cinemasoap.service.Models
         {
             return chosenSeats.Any(item => !screen.seats.Exists(i => i.Row == item.Row && i.SeatNumber == item.SeatNumber) || this.ReservedSeats.Any(i => i.Row == item.Row && i.SeatNumber == item.SeatNumber));
         }
+
+        /// <summary>
+        /// Sprawdzenie czy wybrane miejsca na seans istnieją i są zarezerwowane (przez kogoś innego niż rezerwujący użytkownik)
+        /// </summary>
+        /// <param name="reservedSeats"></param>
+        /// <param name="chosenSeats"></param>
+        /// <returns>Prawda, jeśli którekolwiek z miejsc jest już zarezerwowane</returns>
+        public bool checkSeatsForEdit(List<Seat> chosenSeats, Guid userId)
+        {
+            return chosenSeats.Any(item => !screen.seats.Exists(i => i.Row == item.Row && i.SeatNumber == item.SeatNumber) || CinemaContext.GetContext().Reservations.Any(i => i.getUser().getUserID() != userId && i.getSeatsList().Any(ii => ii.Row == item.Row && ii.SeatNumber == item.SeatNumber)));
+        }
     }
 }

@@ -20,15 +20,8 @@ namespace cinemasoap.service
         List<Movie> GetRepertoire(string date);
 
         [OperationContract]
-        bool SignUp(User user);
-
-        [OperationContract]
         [UsernamePasswordAuthentication]
-        bool CancelReservation(Guid id);
-
-        [OperationContract]
-        [UsernamePasswordAuthentication]
-        FileContentResponseDTO EditReservation(EditReservationRequestDTO newReservation);
+        List<Reservation> GetReservationList(string email);
 
         [OperationContract]
         [UsernamePasswordAuthentication]
@@ -36,10 +29,17 @@ namespace cinemasoap.service
 
         [OperationContract]
         [UsernamePasswordAuthentication]
-        List<Reservation> GetReservationList(string email);
+        FileContentResponseDTO EditReservation(EditReservationRequestDTO newReservation);
 
         [OperationContract]
         [UsernamePasswordAuthentication]
-        FileContentResponseDTO GetMoviePoster(Guid movieId);
+        bool CancelReservation(Guid id);
+
+        //[OperationContract]
+        //bool SignUp(User user);
+
+        //[OperationContract]
+        //[UsernamePasswordAuthentication]
+        //FileContentResponseDTO GetMoviePoster(Guid movieId);
     }
 }

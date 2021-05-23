@@ -199,7 +199,7 @@ namespace cinemasoap.service.Models
             Reservation originalReservation = cinemaContext.Reservations.Where(item => item.reservationID == editedReservation.reservationID).FirstOrDefault();
             if (originalReservation != null)
             {
-                if (originalReservation.screening.checkSeats(editedReservation.seats)) return null; //check if editedReservation's seats aren't already taken
+                if (originalReservation.screening.checkSeatsForEdit(editedReservation.seats, originalReservation.getUser().getUserID())) return null; //check if editedReservation's seats aren't already taken
                 else
                 {
                     editedReservation.seats.ForEach(item => item.SeatID = cinemaContext.Seats.Where(i => i.screen.screenID == originalReservation.screening.screen.screenID && i.Row == item.Row && i.SeatNumber == item.SeatNumber).FirstOrDefault().SeatID);

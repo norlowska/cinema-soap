@@ -13,7 +13,6 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfReservation;
 import org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfSeat;
 import org.datacontract.schemas._2004._07.cinemasoap_service.EditReservationRequestDTO;
 import org.datacontract.schemas._2004._07.cinemasoap_service.FileContentResponseDTO;
-import org.datacontract.schemas._2004._07.cinemasoap_service.User;
 
 
 /**
@@ -25,8 +24,8 @@ import org.datacontract.schemas._2004._07.cinemasoap_service.User;
 @WebService(name = "ICinemaService", targetNamespace = "http://tempuri.org/")
 @XmlSeeAlso({
     org.tempuri.ObjectFactory.class,
-    org.datacontract.schemas._2004._07.cinemasoap_service.ObjectFactory.class,
-    com.microsoft.schemas._2003._10.serialization.ObjectFactory.class
+    com.microsoft.schemas._2003._10.serialization.ObjectFactory.class,
+    org.datacontract.schemas._2004._07.cinemasoap_service.ObjectFactory.class
 })
 public interface ICinemaService {
 
@@ -47,45 +46,17 @@ public interface ICinemaService {
 
     /**
      * 
-     * @param user
+     * @param email
      * @return
-     *     returns java.lang.Boolean
+     *     returns org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfReservation
      */
-    @WebMethod(operationName = "SignUp", action = "http://tempuri.org/ICinemaService/SignUp")
-    @WebResult(name = "SignUpResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "SignUp", targetNamespace = "http://tempuri.org/", className = "org.tempuri.SignUp")
-    @ResponseWrapper(localName = "SignUpResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.SignUpResponse")
-    public Boolean signUp(
-        @WebParam(name = "user", targetNamespace = "http://tempuri.org/")
-        User user);
-
-    /**
-     * 
-     * @param id
-     * @return
-     *     returns java.lang.Boolean
-     */
-    @WebMethod(operationName = "CancelReservation", action = "http://tempuri.org/ICinemaService/CancelReservation")
-    @WebResult(name = "CancelReservationResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "CancelReservation", targetNamespace = "http://tempuri.org/", className = "org.tempuri.CancelReservation")
-    @ResponseWrapper(localName = "CancelReservationResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.CancelReservationResponse")
-    public Boolean cancelReservation(
-        @WebParam(name = "id", targetNamespace = "http://tempuri.org/")
-        String id);
-
-    /**
-     * 
-     * @param newReservation
-     * @return
-     *     returns org.datacontract.schemas._2004._07.cinemasoap_service.FileContentResponseDTO
-     */
-    @WebMethod(operationName = "EditReservation", action = "http://tempuri.org/ICinemaService/EditReservation")
-    @WebResult(name = "EditReservationResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "EditReservation", targetNamespace = "http://tempuri.org/", className = "org.tempuri.EditReservation")
-    @ResponseWrapper(localName = "EditReservationResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.EditReservationResponse")
-    public FileContentResponseDTO editReservation(
-        @WebParam(name = "newReservation", targetNamespace = "http://tempuri.org/")
-        EditReservationRequestDTO newReservation);
+    @WebMethod(operationName = "GetReservationList", action = "http://tempuri.org/ICinemaService/GetReservationList")
+    @WebResult(name = "GetReservationListResult", targetNamespace = "http://tempuri.org/")
+    @RequestWrapper(localName = "GetReservationList", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetReservationList")
+    @ResponseWrapper(localName = "GetReservationListResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetReservationListResponse")
+    public ArrayOfReservation getReservationList(
+        @WebParam(name = "email", targetNamespace = "http://tempuri.org/")
+        String email);
 
     /**
      * 
@@ -109,30 +80,30 @@ public interface ICinemaService {
 
     /**
      * 
-     * @param email
-     * @return
-     *     returns org.datacontract.schemas._2004._07.cinemasoap_service.ArrayOfReservation
-     */
-    @WebMethod(operationName = "GetReservationList", action = "http://tempuri.org/ICinemaService/GetReservationList")
-    @WebResult(name = "GetReservationListResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetReservationList", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetReservationList")
-    @ResponseWrapper(localName = "GetReservationListResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetReservationListResponse")
-    public ArrayOfReservation getReservationList(
-        @WebParam(name = "email", targetNamespace = "http://tempuri.org/")
-        String email);
-
-    /**
-     * 
-     * @param movieId
+     * @param newReservation
      * @return
      *     returns org.datacontract.schemas._2004._07.cinemasoap_service.FileContentResponseDTO
      */
-    @WebMethod(operationName = "GetMoviePoster", action = "http://tempuri.org/ICinemaService/GetMoviePoster")
-    @WebResult(name = "GetMoviePosterResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetMoviePoster", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetMoviePoster")
-    @ResponseWrapper(localName = "GetMoviePosterResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetMoviePosterResponse")
-    public FileContentResponseDTO getMoviePoster(
-        @WebParam(name = "movieId", targetNamespace = "http://tempuri.org/")
-        String movieId);
+    @WebMethod(operationName = "EditReservation", action = "http://tempuri.org/ICinemaService/EditReservation")
+    @WebResult(name = "EditReservationResult", targetNamespace = "http://tempuri.org/")
+    @RequestWrapper(localName = "EditReservation", targetNamespace = "http://tempuri.org/", className = "org.tempuri.EditReservation")
+    @ResponseWrapper(localName = "EditReservationResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.EditReservationResponse")
+    public FileContentResponseDTO editReservation(
+        @WebParam(name = "newReservation", targetNamespace = "http://tempuri.org/")
+        EditReservationRequestDTO newReservation);
+
+    /**
+     * 
+     * @param id
+     * @return
+     *     returns java.lang.Boolean
+     */
+    @WebMethod(operationName = "CancelReservation", action = "http://tempuri.org/ICinemaService/CancelReservation")
+    @WebResult(name = "CancelReservationResult", targetNamespace = "http://tempuri.org/")
+    @RequestWrapper(localName = "CancelReservation", targetNamespace = "http://tempuri.org/", className = "org.tempuri.CancelReservation")
+    @ResponseWrapper(localName = "CancelReservationResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.CancelReservationResponse")
+    public Boolean cancelReservation(
+        @WebParam(name = "id", targetNamespace = "http://tempuri.org/")
+        String id);
 
 }

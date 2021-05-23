@@ -70,6 +70,7 @@ public class ReservationCellController extends ListCell<Reservation> {
         if(empty || reservation == null)
         {
             setText(null);
+            setGraphic(null);
             pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, false);
         } else {
             if(mLLoader == null) {
@@ -84,11 +85,7 @@ public class ReservationCellController extends ListCell<Reservation> {
             pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, !isSelected());
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm dd.MM.yyyy");
             titleInfo.setText(reservation.getScreening().getMovie().getValue().getTitle().getValue());
-            String screeningDetailStr = formatter.format(reservation.getScreening().getFullDate().toGregorianCalendar().getTime());
-            for(Seat s : reservation.getSeats().getSeat()) {
-                screeningDetailStr += "\nRząd " + s.getRow()  + ", Miejsce " + s.getSeatNumber();
-            }
-            screeningDetails.setText(screeningDetailStr);
+            screeningDetails.setText(formatter.format(reservation.getScreening().getFullDate().toGregorianCalendar().getTime()));
             editReservation.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 public void handle(MouseEvent event) {
                     if (reservation != null) {

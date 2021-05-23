@@ -41,7 +41,7 @@ public class SeatCellController extends ListCell<Seat> {
             }
             pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, !isSelected());
             seatInfo.setText("Rząd " + seat.getRow() + ", Miejsce " + seat.getSeatNumber());
-            setText("Rząd " + seat.getRow() + ", Miejsce " + seat.getSeatNumber());
+            setText(null);
             setGraphic(anchorPane);
         }
     }

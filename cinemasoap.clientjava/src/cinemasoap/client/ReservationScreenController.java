@@ -30,6 +30,9 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ReservationScreenController implements Initializable {
 
@@ -86,7 +89,12 @@ public class ReservationScreenController implements Initializable {
         BindingProvider bindingProvider = ((BindingProvider) service);
         bindingProvider.getRequestContext().put(MessageContext.HTTP_REQUEST_HEADERS, requestHeaders);
         seats = FXCollections.observableArrayList();
-        seats.addAll(screening.getFreeSeats().getValue().getSeat());
+        List<Seat> seatsList = screening.getFreeSeats().getValue().getSeat();
+        seatsList.addAll(reservation.getSeats().getSeat());
+        Comparator<Seat> comparator = Comparator.comparing(seat -> seat.getRow());
+        comparator = comparator.thenComparing(seat -> seat.getSeatNumber());
+        Stream<Seat> seatStream = seatsList.stream().sorted(comparator);
+        seats.addAll(seatStream.collect(Collectors.toList()));
     }
 
     @Override
