@@ -107,6 +107,7 @@ namespace cinemasoap.service
                 r.user = null;
                 r.screening.movie.characters = null;
                 r.screening.movie.crew = null;
+                r.screening.screen.seats = null;
             }
             return user.reservations;
         }

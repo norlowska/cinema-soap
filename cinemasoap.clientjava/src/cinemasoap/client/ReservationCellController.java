@@ -73,14 +73,13 @@ public class ReservationCellController extends ListCell<Reservation> {
             setGraphic(null);
             pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, false);
         } else {
+            try {
             if(mLLoader == null) {
-                try {
+
                     mLLoader = new FXMLLoader(getClass().getResource("ReservationCell.fxml"));
                     mLLoader.setController(this);
                     mLLoader.load();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+
             }
             pseudoClassStateChanged(FAVORITE_PSEUDO_CLASS, !isSelected());
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm dd.MM.yyyy");
@@ -126,7 +125,10 @@ public class ReservationCellController extends ListCell<Reservation> {
                     }
                 }
             });
-            setGraphic(reservationCell);
+                setGraphic(reservationCell);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 }

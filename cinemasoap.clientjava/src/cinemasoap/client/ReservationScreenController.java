@@ -78,16 +78,27 @@ public class ReservationScreenController implements Initializable {
 
     public ReservationScreenController(Reservation reservation, boolean isEdit)
     {
-        this.reservation = reservation;
-        this.screening = reservation.getScreening();
-        this.movie = screening.getMovie().getValue();
-        this.isEdit = isEdit;
         CinemaSoap cinemaSoap = new CinemaSoap();
         service = cinemaSoap.getWSHttpBindingICinemaService(new AddressingFeature(true, true));
         Map<String, List<String>> requestHeaders = new HashMap<>();
         requestHeaders.put(Main.getAuthHeader().getKey(), Main.getAuthHeader().getValue());
         BindingProvider bindingProvider = ((BindingProvider) service);
         bindingProvider.getRequestContext().put(MessageContext.HTTP_REQUEST_HEADERS, requestHeaders);
+
+        this.reservation = reservation;
+        this.movie = reservation.getScreening().getMovie().getValue();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
+        this.screening = service
+                .getRepertoire(formatter.format(reservation.getScreening().getFullDate().toGregorianCalendar().getTime()))
+                .getMovie().stream()
+                .filter(i -> i.getMovieID().equals(reservation.getScreening().getMovie().getValue().getMovieID()))
+                .findFirst().orElse(null)
+                .getScreenings().getValue()
+                .getScreening()
+                .stream()
+                .filter(i -> i.getFullDate().equals(reservation.getScreening().getFullDate()))
+                .findFirst().orElse(null);
+        this.isEdit = isEdit;
         seats = FXCollections.observableArrayList();
         List<Seat> seatsList = screening.getFreeSeats().getValue().getSeat();
         seatsList.addAll(reservation.getSeats().getSeat());
